@@ -27,5 +27,14 @@ namespace Pokedojo
 
         public Pokemon(string nom, int pv, int puissance, string type, string faiblesse) : this(nom, pv, puissance, type, faiblesse, "")
         { }
+
+        public int GetPv()
+        {
+            return _pv;
+        }
+        public string GetNom()
+        {
+            return _nom;
+        }
     }
 }
