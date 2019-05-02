@@ -24,12 +24,12 @@ namespace Pokedojo
             _nbPokemon = 3;
             _bddPokemon = bddPokemon;
             Numero = ++_numeroEquipe;
-            _listEquipe = new List<Pokemon>;
+            _listEquipe = new List<Pokemon>();
             int index;
             for(int i=0; i<3; i++)
             {
-                index = _alea.Next(_bddPokemon.Count);
-                _listEquipe.Add(_bddPokemon[index]);
+                index = _alea.Next(_bddPokemon.GetListe().Count);
+                _listEquipe.Add(_bddPokemon.GetListe()[index]);
                 _bddPokemon.SupprimerPokemon(index);
             }
         }
