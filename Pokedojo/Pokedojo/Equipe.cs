@@ -54,5 +54,10 @@ namespace Pokedojo
                 _nbPokemon = _nbPokemon - 1;
             }
         }
+
+        public List<Pokemon> GetListEquipe()
+        {
+            return _listEquipe;
+        }
     }
 }

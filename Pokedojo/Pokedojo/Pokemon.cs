@@ -32,9 +32,25 @@ namespace Pokedojo
         {
             return _pv;
         }
+        public void SetPv(int pv)
+        {
+            _pv = pv;
+        }
         public string GetNom()
         {
             return _nom;
+        }
+        public string GetType()
+        {
+            return _type;
+        }
+        public string GetFaiblesse()
+        {
+            return _faiblesse;
+        }
+        public int GetPuissance()
+        {
+            return _puissance;
         }
     }
 }
