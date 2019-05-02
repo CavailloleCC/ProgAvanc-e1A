@@ -9,6 +9,7 @@ namespace Pokedojo
     class BaseDeDonnees
     {
         private List<Pokemon> _listePokemon;
+        private int _nbPokemonDispo;
         //listePokemon.Add(new Pokemon("bulbizarre", 45, 49, "plante", "feu", "paralysie"));
 
         public BaseDeDonnees()
@@ -64,11 +65,18 @@ namespace Pokedojo
             Pokemon macronium = new Pokemon("macronium", 60, 62, "plante", "insecte", "");
 
             _listePokemon = new List<Pokemon> { bulbizarre, salameche, reptincel, dracaufeu, carapuce, carabaffe, chenipan, chrysacier, rattatta, rattattac, abo, arbok, pikachu, raichu, sabelette, sablaireau, nidorina, nidoranm, nidorino, melo, melodelfe, goupix, goupixAlola, feunard, taupiqueur, triopikeur, persian, perisanAlola, psykokwak, ferosinge, colossinge, caninos, arcanin, ptitard, tetarte , abra , kadabra , alakazam , machoc , machopeur , mackogneur , voltorbe , saquedeneu , scarabrute , voltali , ronflex , mewtwo, mew, macronium };
+            _nbPokemonDispo = _listePokemon.Count;
         }
         
         public List<Pokemon> GetListe()
         {
             return _listePokemon;
+        }
+
+        public void SupprimerPokemon(Pokemon pokemon)
+        {
+            _listePokemon.Remove(pokemon);
+            _nbPokemonDispo = _nbPokemonDispo - 1;
         }
 
 

@@ -30,7 +30,7 @@ namespace Pokedojo
             {
                 index = _alea.Next(_bddPokemon.GetListe().Count);
                 _listEquipe.Add(_bddPokemon.GetListe()[index]);
-                _bddPokemon.SupprimerPokemon(index);
+                _bddPokemon.SupprimerPokemon(_bddPokemon.GetListe()[index]);
             }
         }
         /// <summary>
