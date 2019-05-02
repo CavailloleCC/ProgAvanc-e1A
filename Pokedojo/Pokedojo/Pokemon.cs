@@ -25,7 +25,7 @@ namespace Pokedojo
             _attaqueSpe = attaqueSpe;
         }
 
-        public Pokemon(string nom, int pv, int puissance, string type, string faiblesse): this(nom, pv, puissance, type, faiblesse, "")
-        { } 
+        public Pokemon(string nom, int pv, int puissance, string type, string faiblesse) : this(nom, pv, puissance, type, faiblesse, "")
+        { }
     }
 }

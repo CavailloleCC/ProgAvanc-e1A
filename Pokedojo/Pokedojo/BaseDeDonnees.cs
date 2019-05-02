@@ -8,7 +8,7 @@ namespace Pokedojo
 {
     class BaseDeDonnees
     {
-        List<Pokemon> liste = new Pokemon1(); // création de la liste
+        List<Pokemon> liste = new Pokemon(); // création de la liste
 
     }
 }
