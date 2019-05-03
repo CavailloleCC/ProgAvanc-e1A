@@ -46,11 +46,7 @@ namespace Pokedojo
         public Equipe Attaquer()
         {
             Equipe equipeAttaquante = TirerPremierJoueur();
-            Equipe equipeAdverse;
-            if (equipeAttaquante == Equipe1)
-            {
-                Equipe equipeAdverse; //équipe adverse correspond à l'équipe qui n'attaque pas
-            }
+            Equipe equipeAdverse;//équipe adverse correspond à l'équipe qui n'attaque pas
             if (equipeAttaquante == Equipe1)
             {
                 equipeAdverse = Equipe2;
