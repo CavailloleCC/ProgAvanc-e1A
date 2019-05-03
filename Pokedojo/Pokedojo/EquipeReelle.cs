@@ -32,7 +32,7 @@ namespace Pokedojo
                 {
                     i++;
                 }
-                if (i == (ListEquipe.Count-1))
+                if (i == ListEquipe.Count)
                 {
                     Console.WriteLine("Le Pokémon choisi ne fait pas parti de votre équipe.");
                 }

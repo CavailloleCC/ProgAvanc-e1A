@@ -10,7 +10,7 @@ namespace Pokedojo
     {
         public List<Pokemon> ListEquipe { get; set; }
         public int NbPokemon { get; set; }
-        private Random _alea;
+        public Random _alea = new Random();
         protected static int _numeroEquipe = 0;
         public BaseDeDonnees BddPokemon { get; set; }
         public int Numero { get; protected set; }
@@ -28,7 +28,7 @@ namespace Pokedojo
             int index;
             for(int i=0; i<3; i++)
             {
-                index = _alea.Next(BddPokemon.ListePokemon.Count);
+                index = _alea.Next(BddPokemon.NbPokemonDispo);
                 ListEquipe.Add(BddPokemon.ListePokemon[index]);
                 BddPokemon.SupprimerPokemon(BddPokemon.ListePokemon[index]);
             }
@@ -39,7 +39,7 @@ namespace Pokedojo
         /// <returns></returns>
         public virtual Pokemon ChoisirActif()
         {
-            int numero = _alea.Next(ListEquipe.Count);
+            int numero = _alea.Next(NbPokemon);
             return ListEquipe[numero];
         }
         /// <summary>
@@ -51,7 +51,7 @@ namespace Pokedojo
             if(pokemon.Pv <= 0)
             {
                 ListEquipe.Remove(pokemon);
-                NbPokemon = NbPokemon - 1;
+                NbPokemon = NbPokemon-1;
             }
         }
 

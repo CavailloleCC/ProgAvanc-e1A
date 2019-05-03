@@ -10,6 +10,18 @@ namespace Pokedojo
     {
         static void Main(string[] args)
         {
+            Tournoi tournoi = new Tournoi();
+            Console.WriteLine(tournoi);
+            Equipe vainqueur = tournoi.TournerJeux();
+            if(vainqueur is EquipeReelle)
+            {
+                Console.WriteLine("Votre équipe a gagné !");
+            }
+            else
+            {
+                Console.WriteLine("L'équipe vainqueur est l'équipe numéro " + vainqueur.Numero);
+            }
+            Console.ReadKey();
         }
     }
 }

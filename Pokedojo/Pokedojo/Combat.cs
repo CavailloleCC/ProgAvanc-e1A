@@ -10,7 +10,7 @@ namespace Pokedojo
     {
         public Equipe Equipe1 { get; set; }
         private Equipe Equipe2 { get; set; }
-        private Random _alea;
+        private Random _alea = new Random();
 
         /// <summary>
         /// Constructeur
@@ -45,6 +45,12 @@ namespace Pokedojo
         /// <returns></returns>
         public Equipe Attaquer()
         {
+            //Affichage des caractéristiques des 2 équipes si l'équipe réelle fait partie du combat
+            if(Equipe1 is EquipeReelle || Equipe2 is EquipeReelle)
+            {
+                Console.WriteLine(Equipe1);
+                Console.WriteLine(Equipe2);
+            }
             Equipe equipeAttaquante = TirerPremierJoueur();
             Equipe equipeAdverse;//équipe adverse correspond à l'équipe qui n'attaque pas
             if (equipeAttaquante == Equipe1)
@@ -58,7 +64,7 @@ namespace Pokedojo
             Pokemon attaquant = equipeAttaquante.ChoisirActif();
             Pokemon adverse = equipeAdverse.ChoisirActif();
 
-            while (equipeAdverse.ListEquipe.Count != 0 && equipeAttaquante.ListEquipe.Count != 0)
+            while (equipeAdverse.NbPokemon != 0 && equipeAttaquante.NbPokemon != 0)
             {
                 if(attaquant.Type == adverse.Faiblesse)
                 {
@@ -71,13 +77,40 @@ namespace Pokedojo
                 if(adverse.Pv<=0)
                 {
                     equipeAdverse.SupprimerPokemonKO(adverse);
+                    if(equipeAdverse is EquipeReelle)
+                    {
+                        Console.WriteLine("Votre Pokémon actif a été mis KO...");
+                    }
                 }
-                if(equipeAdverse.ListEquipe.Count != 0 && equipeAttaquante.ListEquipe.Count != 0)
+                if(equipeAdverse.NbPokemon != 0 && equipeAttaquante.NbPokemon != 0)
                 {
                     equipeAdverse = equipeAttaquante;
-                    equipeAttaquante = equipeAdverse;
+                    if(equipeAdverse==Equipe1)
+                    {
+                        equipeAttaquante = Equipe2;
+                    }
+                    else
+                    {
+                        equipeAttaquante = Equipe1;
+                    }
                     adverse = attaquant;
+                    if (Equipe1 is EquipeReelle || Equipe2 is EquipeReelle)
+                    {
+                        Console.WriteLine(Equipe1);
+                        Console.WriteLine(Equipe2);
+                    }
                     attaquant = equipeAttaquante.ChoisirActif();
+                }
+            }
+            if(Equipe1 is EquipeReelle || Equipe2 is EquipeReelle)
+            {
+                if((Equipe1 is EquipeReelle && Equipe1==equipeAttaquante)||(Equipe2 is EquipeReelle && Equipe2==equipeAttaquante))
+                {
+                    Console.WriteLine("Votre équipe a gagné le combat !");
+                }
+                else
+                {
+                    Console.WriteLine("Votre équipe a perdu le combat, vous êtes éliminé...");
                 }
             }
             return equipeAttaquante;
@@ -86,8 +119,9 @@ namespace Pokedojo
         public override string ToString()
         {
             string chRes = "";
-            chRes = chRes + "Combat entre les équipes " + Equipe1.Numero + " et " + Equipe2.Numero;
-            chRes = chRes + "\nLe vainqueur est : Equipe " + Attaquer().Numero;
+            chRes = chRes + "Combat entre les équipes " + Equipe1.Numero + " et " + Equipe2.Numero+"\n\n";
+            chRes = chRes + "Equipe " + Equipe1.Numero + "\n" + Equipe1.ToString() + "/n/n";
+            chRes = chRes + "Equipe " + Equipe2.Numero + "\n" + Equipe2.ToString() + "\n\n";
             return chRes;
         }
     }

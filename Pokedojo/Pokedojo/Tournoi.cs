@@ -10,7 +10,7 @@ namespace Pokedojo
     {
         public List<Equipe> ListeTournoi { get; set; }
         public BaseDeDonnees BddPokemon { get; set; }
-        private Random _alea;
+        public Random _alea=new Random();
 
         /// <summary>
         /// Constructeur : Créer une liste de 16 équipes composées des Pokémon issues d'une base de données de 48 Pokémons
@@ -69,6 +69,12 @@ namespace Pokedojo
 
             }
             return ListeTournoi[0];
+        }
+
+        public override string ToString()
+        {
+            string chRes = "Tournoi de 16 équipes en trois tours\n";
+            return chRes;
         }
 
 
