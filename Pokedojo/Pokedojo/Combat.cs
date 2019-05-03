@@ -8,8 +8,8 @@ namespace Pokedojo
 {
     class Combat
     {
-        private Equipe _equipe1;
-        private Equipe _equipe2;
+        public Equipe Equipe1 { get; set; }
+        private Equipe Equipe2 { get; set; }
         private Random _alea;
 
         /// <summary>
@@ -19,8 +19,8 @@ namespace Pokedojo
         /// <param name="equipe2"></param>
         public Combat(Equipe equipe1, Equipe equipe2)
         {
-            _equipe1 = equipe1;
-            _equipe2 = equipe2;
+            Equipe1 = equipe1;
+            Equipe2 = equipe2;
         }
 
         /// <summary>
@@ -32,11 +32,11 @@ namespace Pokedojo
             int premierEquipe = _alea.Next(1, 3);
             if(premierEquipe == 1)
             {
-                return _equipe1;
+                return Equipe1;
             }
             else
             {
-                return _equipe2;
+                return Equipe2;
             }
         }
 
@@ -45,32 +45,32 @@ namespace Pokedojo
         {
             Equipe equipeAttaquante = TirerPremierJoueur();
             Equipe equipeAdverse;
-            if (equipeAttaquante == _equipe1)
+            if (equipeAttaquante == Equipe1)
             {
-                equipeAdverse = _equipe2;
+                equipeAdverse = Equipe2;
             }
             else
             {
-                equipeAdverse = _equipe1;
+                equipeAdverse = Equipe1;
             }
             Pokemon attaquant = equipeAttaquante.ChoisirActif();
             Pokemon adverse = equipeAdverse.ChoisirActif();
 
-            while (equipeAdverse.GetListEquipe().Count != 0 && equipeAttaquante.GetListEquipe().Count != 0)
+            while (equipeAdverse.ListEquipe.Count != 0 && equipeAttaquante.ListEquipe.Count != 0)
             {
-                if(attaquant.GetType() == adverse.GetFaiblesse())
+                if(attaquant.Type == adverse.Faiblesse)
                 {
-                    adverse.SetPv(adverse.GetPv() - (2 * attaquant.GetPuissance()));
+                    adverse.Pv=adverse.Pv - (2 * attaquant.Puissance);
                 }
                 else
                 {
-                    adverse.SetPv(adverse.GetPv() - attaquant.GetPuissance());
+                    adverse.Pv=adverse.Pv - attaquant.Puissance;
                 }
-                if(adverse.GetPv()<=0)
+                if(adverse.Pv<=0)
                 {
                     equipeAdverse.SupprimerPokemonKO(adverse);
                 }
-                if(equipeAdverse.GetListEquipe().Count != 0 && equipeAttaquante.GetListEquipe().Count != 0)
+                if(equipeAdverse.ListEquipe.Count != 0 && equipeAttaquante.ListEquipe.Count != 0)
                 {
                     equipeAdverse = equipeAttaquante;
                     equipeAttaquante = equipeAdverse;

@@ -8,9 +8,8 @@ namespace Pokedojo
 {
     class BaseDeDonnees
     {
-        private List<Pokemon> _listePokemon;
-        private int _nbPokemonDispo;
-        //listePokemon.Add(new Pokemon("bulbizarre", 45, 49, "plante", "feu", "paralysie"));
+        public List<Pokemon> ListePokemon { get; set; }
+        public int NbPokemonDispo { get; set; }
 
         public BaseDeDonnees()
         {
@@ -64,19 +63,19 @@ namespace Pokedojo
             Pokemon mew = new Pokemon("mew", 100, 100, "psy", "insecte", "sommeil");
             Pokemon macronium = new Pokemon("macronium", 60, 62, "plante", "insecte", "");
 
-            _listePokemon = new List<Pokemon> { bulbizarre, salameche, reptincel, dracaufeu, carapuce, carabaffe, chenipan, chrysacier, rattatta, rattattac, abo, arbok, pikachu, raichu, sabelette, sablaireau, nidorina, nidoranm, nidorino, melo, melodelfe, goupix, goupixAlola, feunard, taupiqueur, triopikeur, persian, perisanAlola, psykokwak, ferosinge, colossinge, caninos, arcanin, ptitard, tetarte , abra , kadabra , alakazam , machoc , machopeur , mackogneur , voltorbe , saquedeneu , scarabrute , voltali , ronflex , mewtwo, mew, macronium };
-            _nbPokemonDispo = _listePokemon.Count;
+            ListePokemon = new List<Pokemon> { bulbizarre, salameche, reptincel, dracaufeu, carapuce, carabaffe, chenipan, chrysacier, rattatta, rattattac, abo, arbok, pikachu, raichu, sabelette, sablaireau, nidorina, nidoranm, nidorino, melo, melodelfe, goupix, goupixAlola, feunard, taupiqueur, triopikeur, persian, perisanAlola, psykokwak, ferosinge, colossinge, caninos, arcanin, ptitard, tetarte , abra , kadabra , alakazam , machoc , machopeur , mackogneur , voltorbe , saquedeneu , scarabrute , voltali , ronflex , mewtwo, mew, macronium };
+            NbPokemonDispo = ListePokemon.Count;
         }
         
-        public List<Pokemon> GetListe()
-        {
-            return _listePokemon;
-        }
 
+        /// <summary>
+        /// Supprimer le Pokémon de la liste lorsqu'il a été attribué à une équipe 
+        /// </summary>
+        /// <param name="pokemon"></param>
         public void SupprimerPokemon(Pokemon pokemon)
         {
-            _listePokemon.Remove(pokemon);
-            _nbPokemonDispo = _nbPokemonDispo - 1;
+            ListePokemon.Remove(pokemon);
+            NbPokemonDispo = NbPokemonDispo - 1;
         }
 
 
