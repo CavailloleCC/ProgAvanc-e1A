@@ -39,12 +39,14 @@ namespace Pokedojo
                 return _equipe2;
             }
         }
-
-        //Simule un combat entre deux équipes et retourne l'équipe vainqueur
+        /// <summary>
+        /// Simule un combat entre deux équipes et retourne l'équipe vainqueur
+        /// </summary>
+        /// <returns></returns>
         public Equipe Attaquer()
         {
             Equipe equipeAttaquante = TirerPremierJoueur();
-            Equipe equipeAdverse;
+            Equipe equipeAdverse; //équipe adverse correspond à l'équipe qui n'attaque pas
             if (equipeAttaquante == _equipe1)
             {
                 equipeAdverse = _equipe2;
