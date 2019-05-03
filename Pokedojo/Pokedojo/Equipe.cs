@@ -55,9 +55,15 @@ namespace Pokedojo
             }
         }
 
-        public List<Pokemon> GetListEquipe()
+        public override string ToString()
         {
-            return ListEquipe;
+            string chRes = "";
+            chRes = "Equipe numéro " + Numero +"\n";
+            foreach(Pokemon pokemon in ListEquipe)
+            {
+                chRes = chRes + pokemon.ToString()+"\n";
+            }
+            return chRes;
         }
     }
 }
