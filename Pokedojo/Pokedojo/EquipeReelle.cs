@@ -43,5 +43,12 @@ namespace Pokedojo
             } while (trouve == false);
             return ListEquipe[i];
         }
+
+        public override string ToString()
+        {
+            string chRes = "";
+            chRes = "Votre nom d'équipe est : " + NomEquipe + "\n"+ base.ToString();
+            return chRes;
+        }
     }
 }

@@ -81,9 +81,14 @@ namespace Pokedojo
                 }
             }
             return equipeAttaquante;
-
-            
         }
-        
+
+        public override string ToString()
+        {
+            string chRes = "";
+            chRes = chRes + "Combat entre les équipes " + Equipe1.Numero + " et " + Equipe2.Numero;
+            chRes = chRes + "\nLe vainqueur est : Equipe " + Attaquer().Numero;
+            return chRes;
+        }
     }
 }
