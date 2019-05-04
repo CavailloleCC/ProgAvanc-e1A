@@ -59,9 +59,11 @@ namespace Pokedojo
         {
             string chRes = "";
             chRes = "Equipe numéro " + Numero +"\n";
+            chRes = chRes + "---------------------------------------\n";
             foreach(Pokemon pokemon in ListEquipe)
             {
-                chRes = chRes + pokemon.ToString()+"\n";
+                chRes = chRes + pokemon.ToString();
+                chRes = chRes + "---------------------------------------\n";
             }
             return chRes;
         }

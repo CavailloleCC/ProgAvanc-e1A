@@ -29,15 +29,29 @@ namespace Pokedojo
         /// <returns></returns>
         public Equipe TirerPremierJoueur()
         {
+            Equipe premiereEquipe;
             int premierEquipe = _alea.Next(1, 3);
             if(premierEquipe == 1)
             {
-                return Equipe1;
+                premiereEquipe = Equipe1;
             }
             else
             {
-                return Equipe2;
+                premiereEquipe = Equipe2;
             }
+            if(Equipe1 is EquipeReelle || Equipe2 is EquipeReelle)
+            {
+                if(premiereEquipe is EquipeReelle)
+                {
+                    Console.WriteLine("C'est à votre équipe d'attaquer en premier.");
+                }
+                else
+                {
+                    Console.WriteLine("C'est à l'équipe adverse d'attaquer en premier");
+                }
+            }
+            return premiereEquipe;
+
         }
         /// <summary>
         /// Simule un combat entre deux équipes et retourne l'équipe vainqueur
@@ -46,7 +60,7 @@ namespace Pokedojo
         public Equipe Attaquer()
         {
             //Affichage des caractéristiques des 2 équipes si l'équipe réelle fait partie du combat
-            if(Equipe1 is EquipeReelle || Equipe2 is EquipeReelle)
+            if (Equipe1 is EquipeReelle || Equipe2 is EquipeReelle)
             {
                 Console.WriteLine(Equipe1);
                 Console.WriteLine(Equipe2);
@@ -63,6 +77,7 @@ namespace Pokedojo
             }
             Pokemon attaquant = equipeAttaquante.ChoisirActif();
             Pokemon adverse = equipeAdverse.ChoisirActif();
+            Pokemon temp;
 
             while (equipeAdverse.NbPokemon != 0 && equipeAttaquante.NbPokemon != 0)
             {
@@ -81,6 +96,13 @@ namespace Pokedojo
                     {
                         Console.WriteLine("Votre Pokémon actif a été mis KO...");
                     }
+                    else
+                    {
+                        if(equipeAttaquante is EquipeReelle)
+                        {
+                            Console.WriteLine("Le Pokémon adverse a été mis KO !");
+                        }
+                    }
                 }
                 if(equipeAdverse.NbPokemon != 0 && equipeAttaquante.NbPokemon != 0)
                 {
@@ -93,25 +115,37 @@ namespace Pokedojo
                     {
                         equipeAttaquante = Equipe1;
                     }
+                    temp = adverse;
                     adverse = attaquant;
                     if (Equipe1 is EquipeReelle || Equipe2 is EquipeReelle)
                     {
                         Console.WriteLine(Equipe1);
                         Console.WriteLine(Equipe2);
                     }
-                    attaquant = equipeAttaquante.ChoisirActif();
+                    if (temp.Pv <= 0)
+                    {
+                        attaquant = equipeAttaquante.ChoisirActif();
+                    }
+                    else
+                    {
+                        attaquant = temp;
+                    }
                 }
             }
             if(Equipe1 is EquipeReelle || Equipe2 is EquipeReelle)
             {
                 if((Equipe1 is EquipeReelle && Equipe1==equipeAttaquante)||(Equipe2 is EquipeReelle && Equipe2==equipeAttaquante))
                 {
-                    Console.WriteLine("Votre équipe a gagné le combat !");
+                    Console.WriteLine("Votre équipe a gagné le combat !\n");
                 }
                 else
                 {
-                    Console.WriteLine("Votre équipe a perdu le combat, vous êtes éliminé...");
+                    Console.WriteLine("Votre équipe a perdu le combat, vous êtes éliminé...\n");
                 }
+            }
+            else
+            {
+                Console.WriteLine("L'équipe gagnante est l'équipe " + equipeAttaquante.Numero+"\n");
             }
             return equipeAttaquante;
         }
@@ -119,9 +153,7 @@ namespace Pokedojo
         public override string ToString()
         {
             string chRes = "";
-            chRes = chRes + "Combat entre les équipes " + Equipe1.Numero + " et " + Equipe2.Numero+"\n\n";
-            chRes = chRes + "Equipe " + Equipe1.Numero + "\n" + Equipe1.ToString() + "/n/n";
-            chRes = chRes + "Equipe " + Equipe2.Numero + "\n" + Equipe2.ToString() + "\n\n";
+            chRes = chRes + "Combat entre les équipes " + Equipe1.Numero + " et " + Equipe2.Numero;
             return chRes;
         }
     }

@@ -52,6 +52,7 @@ namespace Pokedojo
                     equipe2 = equipeDispo[index2];
                     equipeDispo.RemoveAt(index2);
                     combat = new Combat(equipe1, equipe2);
+                    Console.WriteLine(combat);
                     vainqueur = combat.Attaquer();
                     if (vainqueur == equipe1)
                     {
@@ -73,7 +74,7 @@ namespace Pokedojo
 
         public override string ToString()
         {
-            string chRes = "Tournoi de 16 équipes en trois tours\n";
+            string chRes = "Tournoi de 16 équipes en trois tours\n\n";
             return chRes;
         }
 
