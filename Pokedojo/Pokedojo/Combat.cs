@@ -11,6 +11,8 @@ namespace Pokedojo
         public Equipe Equipe1 { get; set; }
         private Equipe Equipe2 { get; set; }
         private Random _alea = new Random();
+        protected static int _numeroCombat = 0;
+        public int NumeroCombat { get; protected set;}
 
         /// <summary>
         /// Constructeur
@@ -21,6 +23,7 @@ namespace Pokedojo
         {
             Equipe1 = equipe1;
             Equipe2 = equipe2;
+            NumeroCombat = ++_numeroCombat;
         }
 
         /// <summary>
@@ -53,11 +56,38 @@ namespace Pokedojo
             return premiereEquipe;
 
         }
+
+        public void Attaquer(Equipe equipeAttaquante,Equipe equipeAdverse, Pokemon attaquant, Pokemon adverse)
+        {
+            if (attaquant.Type == adverse.Faiblesse)
+            {
+                adverse.Pv = adverse.Pv - (2 * attaquant.Puissance);
+            }
+            else
+            {
+                adverse.Pv = adverse.Pv - attaquant.Puissance;
+            }
+            if (adverse.Pv <= 0)
+            {
+                equipeAdverse.SupprimerPokemonKO(adverse);
+                if (equipeAdverse is EquipeReelle)
+                {
+                    Console.WriteLine("Votre Pokémon actif a été mis KO...");
+                }
+                else
+                {
+                    if (equipeAttaquante is EquipeReelle)
+                    {
+                        Console.WriteLine("Le Pokémon adverse a été mis KO !");
+                    }
+                }
+            }
+        }
         /// <summary>
         /// Simule un combat entre deux équipes et retourne l'équipe vainqueur
         /// </summary>
         /// <returns></returns>
-        public Equipe Attaquer()
+        public Equipe Combattre()
         {
             //Affichage des caractéristiques des 2 équipes si l'équipe réelle fait partie du combat
             if (Equipe1 is EquipeReelle || Equipe2 is EquipeReelle)
@@ -81,7 +111,8 @@ namespace Pokedojo
 
             while (equipeAdverse.NbPokemon != 0 && equipeAttaquante.NbPokemon != 0)
             {
-                if(attaquant.Type == adverse.Faiblesse)
+                Attaquer(equipeAttaquante, equipeAdverse, attaquant, adverse);
+                /*if(attaquant.Type == adverse.Faiblesse)
                 {
                     adverse.Pv=adverse.Pv - (2 * attaquant.Puissance);
                 }
@@ -103,7 +134,7 @@ namespace Pokedojo
                             Console.WriteLine("Le Pokémon adverse a été mis KO !");
                         }
                     }
-                }
+                }*/
                 if(equipeAdverse.NbPokemon != 0 && equipeAttaquante.NbPokemon != 0)
                 {
                     equipeAdverse = equipeAttaquante;
@@ -153,7 +184,32 @@ namespace Pokedojo
         public override string ToString()
         {
             string chRes = "";
-            chRes = chRes + "Combat entre les équipes " + Equipe1.Numero + " et " + Equipe2.Numero;
+            if(NumeroCombat==1)
+            {
+                chRes = chRes + "PREMIER TOUR\n\n";
+            }
+            else
+            {
+                if(NumeroCombat==9)
+                {
+                    chRes = chRes + "SECOND TOUR\n\n";
+                }
+                else
+                {
+                    if(NumeroCombat==13)
+                    {
+                        chRes = chRes + "TROISIEME TOUR\n\n";
+                    }
+                    else
+                    {
+                        if(NumeroCombat==15)
+                        {
+                            chRes = chRes + "FINALE\n\n";
+                        }
+                    }
+                }
+            }
+            chRes = chRes + "Combat numéro "+NumeroCombat+"\nCombat entre les équipes " + Equipe1.Numero + " et " + Equipe2.Numero;
             return chRes;
         }
     }
