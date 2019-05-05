@@ -57,6 +57,13 @@ namespace Pokedojo
 
         }
 
+        /// <summary>
+        /// Simule une attaque entre deux Pokémons de deux équipes distinctes
+        /// </summary>
+        /// <param name="equipeAttaquante"></param>
+        /// <param name="equipeAdverse"></param>
+        /// <param name="attaquant"></param>
+        /// <param name="adverse"></param>
         public void Attaquer(Equipe equipeAttaquante,Equipe equipeAdverse, Pokemon attaquant, Pokemon adverse)
         {
             if (attaquant.Type == adverse.Faiblesse)
@@ -112,29 +119,6 @@ namespace Pokedojo
             while (equipeAdverse.NbPokemon != 0 && equipeAttaquante.NbPokemon != 0)
             {
                 Attaquer(equipeAttaquante, equipeAdverse, attaquant, adverse);
-                /*if(attaquant.Type == adverse.Faiblesse)
-                {
-                    adverse.Pv=adverse.Pv - (2 * attaquant.Puissance);
-                }
-                else
-                {
-                    adverse.Pv=adverse.Pv - attaquant.Puissance;
-                }
-                if(adverse.Pv<=0)
-                {
-                    equipeAdverse.SupprimerPokemonKO(adverse);
-                    if(equipeAdverse is EquipeReelle)
-                    {
-                        Console.WriteLine("Votre Pokémon actif a été mis KO...");
-                    }
-                    else
-                    {
-                        if(equipeAttaquante is EquipeReelle)
-                        {
-                            Console.WriteLine("Le Pokémon adverse a été mis KO !");
-                        }
-                    }
-                }*/
                 if(equipeAdverse.NbPokemon != 0 && equipeAttaquante.NbPokemon != 0)
                 {
                     equipeAdverse = equipeAttaquante;
