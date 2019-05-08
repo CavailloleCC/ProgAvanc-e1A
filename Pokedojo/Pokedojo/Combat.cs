@@ -74,19 +74,12 @@ namespace Pokedojo
             {
                 adverse.Pv = adverse.Pv - attaquant.Puissance;
             }
-            if (adverse.Pv <= 0)
+            if(adverse.Pv<=0)
             {
                 equipeAdverse.SupprimerPokemonKO(adverse);
-                if (equipeAdverse is EquipeReelle)
+                if (equipeAdverse is EquipeReelle || equipeAttaquante is EquipeReelle)
                 {
-                    Console.WriteLine("Votre Pokémon actif a été mis KO...");
-                }
-                else
-                {
-                    if (equipeAttaquante is EquipeReelle)
-                    {
-                        Console.WriteLine("Le Pokémon adverse a été mis KO !");
-                    }
+                    Console.WriteLine(adverse.Nom+" a été mis KO par "+attaquant.Nom);
                 }
             }
         }
@@ -132,18 +125,22 @@ namespace Pokedojo
                     }
                     temp = adverse;
                     adverse = attaquant;
-                    if (Equipe1 is EquipeReelle || Equipe2 is EquipeReelle)
-                    {
-                        Console.WriteLine(Equipe1);
-                        Console.WriteLine(Equipe2);
-                    }
                     if (temp.Pv <= 0)
                     {
+                        if(equipeAttaquante is EquipeReelle)
+                        {
+                            Console.WriteLine(Equipe1);
+                            Console.WriteLine(Equipe2);
+                        }
                         attaquant = equipeAttaquante.ChoisirActif();
                     }
                     else
                     {
                         attaquant = temp;
+                        if (Equipe1 is EquipeReelle || Equipe2 is EquipeReelle)
+                        {
+                            Console.WriteLine(attaquant.Nom + " devient attaquant\n" + adverse.Nom + " devient adverse");
+                        }
                     }
                 }
             }
@@ -170,25 +167,25 @@ namespace Pokedojo
             string chRes = "";
             if(NumeroCombat==1)
             {
-                chRes = chRes + "PREMIER TOUR\n\n";
+                chRes = chRes + "###################################################################################\nPREMIER TOUR\n\n";
             }
             else
             {
                 if(NumeroCombat==9)
                 {
-                    chRes = chRes + "SECOND TOUR\n\n";
+                    chRes = chRes + "###################################################################################\nSECOND TOUR\n\n";
                 }
                 else
                 {
                     if(NumeroCombat==13)
                     {
-                        chRes = chRes + "TROISIEME TOUR\n\n";
+                        chRes = chRes + "###################################################################################\nTROISIEME TOUR\n\n";
                     }
                     else
                     {
                         if(NumeroCombat==15)
                         {
-                            chRes = chRes + "FINALE\n\n";
+                            chRes = chRes + "###################################################################################\nFINALE\n\n";
                         }
                     }
                 }
