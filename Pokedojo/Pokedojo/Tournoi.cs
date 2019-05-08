@@ -42,7 +42,8 @@ namespace Pokedojo
             int index2; Equipe equipe2;
             Combat combat;
             Equipe vainqueur;
-            List<List<Equipe>> resultatsTour = new List<List<Equipe>>();
+            //Liste de liste d'équipe contenant les 2 équipes combattantes et l'équipe vainqueur du combat : servira pour l'affichage du tableau des résulats de chaque tour
+            List<List<Equipe>> resultatsTour = new List<List<Equipe>>(); 
             while(ListeTournoi.Count>1)
             {
                 while (equipeDispo.Count != 0)
@@ -64,12 +65,13 @@ namespace Pokedojo
                     {
                         ListeTournoi.Remove(equipe1);
                     }
-                    resultatsTour.Add(new List<Equipe> { equipe1, equipe2, vainqueur });
+                    resultatsTour.Add(new List<Equipe> { equipe1, equipe2, vainqueur }); //Remplissage de la liste des résultats 
                 }
                 for (int i = 0; i < ListeTournoi.Count; i++)
                 {
                     equipeDispo.Add(ListeTournoi[i]);
                 }
+                //Affichage du tableau des résultats des combats pour chaque tour
                 for(int i=0; i<resultatsTour.Count;i++)
                 {
                     num = i + 1;
@@ -117,7 +119,7 @@ namespace Pokedojo
                     }
                 }
                 Console.WriteLine(" ----------------------------------------------------------\n");
-                resultatsTour.Clear();
+                resultatsTour.Clear(); //Tour terminé : on vide la liste des résultats du tour 
 
             }
             return ListeTournoi[0];
