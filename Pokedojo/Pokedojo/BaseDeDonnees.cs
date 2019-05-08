@@ -53,7 +53,7 @@ namespace Pokedojo
             Pokemon alakazam = new Pokemon("alakazam", 55, 50, "psy", "tenebres", "paralysie");
             Pokemon machoc = new Pokemon("machoc", 70, 80, "combat", "psy", "gel");
             Pokemon machopeur = new Pokemon("machopeur", 80, 100, "combat", "fee", "paralysie");
-            Pokemon mackogneur = new Pokemon("mackogneur", 90, 130, "combat", "psy");
+            Pokemon mackogneur = new Pokemon("mackogneur", 90, 130, "combat", "psy","");
             Pokemon voltorbe = new Pokemon("voltorbe", 40, 30, "electrik", "sol", "gel");
             Pokemon saquedeneu = new Pokemon("saquedeneu", 65, 55, "plante", "insecte", "sommeil");
             Pokemon scarabrute = new Pokemon("scarabrute", 65, 125, "insecte", "feu", "");
