@@ -47,7 +47,13 @@ namespace Pokedojo
         public override string ToString()
         {
             string chRes = "";
-            chRes = "Votre nom d'équipe est : " + NomEquipe + "\n"+ base.ToString();
+            chRes = chRes + "Equipe " + NomEquipe+" : Equipe "+Numero;
+            chRes = chRes + "\n---------------------------------------\n";
+            foreach (Pokemon pokemon in ListEquipe)
+            {
+                chRes = chRes + pokemon.ToString();
+                chRes = chRes + "---------------------------------------\n";
+            }
             return chRes;
         }
     }

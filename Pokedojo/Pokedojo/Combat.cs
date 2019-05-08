@@ -92,6 +92,14 @@ namespace Pokedojo
             //Affichage des caractéristiques des 2 équipes si l'équipe réelle fait partie du combat
             if (Equipe1 is EquipeReelle || Equipe2 is EquipeReelle)
             {
+                if(Equipe1 is EquipeReelle)
+                {
+                    Console.WriteLine("Vous combattez contre l'équipe " + Equipe2.Numero+"\n");
+                }
+                else
+                {
+                    Console.WriteLine("Vous combattez contre l'équipe " + Equipe1.Numero + "\n");
+                }
                 Console.WriteLine(Equipe1);
                 Console.WriteLine(Equipe2);
             }
@@ -105,6 +113,7 @@ namespace Pokedojo
             {
                 equipeAdverse = Equipe1;
             }
+            //Choix des Pokémons actifs pour chacune des deux équipes
             Pokemon attaquant = equipeAttaquante.ChoisirActif();
             Pokemon adverse = equipeAdverse.ChoisirActif();
             Pokemon temp;
@@ -133,13 +142,17 @@ namespace Pokedojo
                             Console.WriteLine(Equipe2);
                         }
                         attaquant = equipeAttaquante.ChoisirActif();
+                        if(Equipe1 is EquipeReelle || Equipe2 is EquipeReelle)
+                        {
+                            Console.WriteLine("Le Pokémon attaquant est à présent " + attaquant.Nom + "\n" + adverse.Nom + " devient adverse\n");
+                        }
                     }
                     else
                     {
                         attaquant = temp;
                         if (Equipe1 is EquipeReelle || Equipe2 is EquipeReelle)
                         {
-                            Console.WriteLine(attaquant.Nom + " devient attaquant\n" + adverse.Nom + " devient adverse");
+                            Console.WriteLine(attaquant.Nom + " devient attaquant\n" + adverse.Nom + " devient adverse\n");
                         }
                     }
                 }
@@ -154,10 +167,6 @@ namespace Pokedojo
                 {
                     Console.WriteLine("Votre équipe a perdu le combat, vous êtes éliminé...\n");
                 }
-            }
-            else
-            {
-                Console.WriteLine("L'équipe gagnante est l'équipe " + equipeAttaquante.Numero+"\n");
             }
             return equipeAttaquante;
         }
@@ -190,7 +199,6 @@ namespace Pokedojo
                     }
                 }
             }
-            chRes = chRes + "Combat numéro "+NumeroCombat+"\nCombat entre les équipes " + Equipe1.Numero + " et " + Equipe2.Numero;
             return chRes;
         }
     }
