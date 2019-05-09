@@ -19,7 +19,7 @@ namespace Pokedojo
         }
 
         /// <summary>
-        /// Choix par le joueur du Pokémon actif parmi les Pokémons de l'équipe : retourne le nom du Pokémon actif
+        /// Choix par le joueur du Pokémon actif parmi les Pokémons de l'équipe : retourne le Pokémon actif
         /// </summary>
         /// <param name="equipe"></param>
         /// <returns></returns>
