@@ -18,6 +18,11 @@ namespace Pokedojo
             NomEquipe = nomEquipe;
         }
 
+        /// <summary>
+        /// Choix par le joueur du Pokémon actif parmi les Pokémons de l'équipe : retourne le nom du Pokémon actif
+        /// </summary>
+        /// <param name="equipe"></param>
+        /// <returns></returns>
         public override Pokemon ChoisirActif()
         {
             bool trouve = false;

@@ -33,6 +33,7 @@ namespace Pokedojo
                 BddPokemon.SupprimerPokemon(BddPokemon.ListePokemon[index]);
             }
         }
+
         /// <summary>
         /// Choix aléatoire du Pokémon actif parmi les Pokémons de l'équipe : retourne le nom du Pokémon actif
         /// </summary>
@@ -42,6 +43,7 @@ namespace Pokedojo
             int numero = _alea.Next(NbPokemon);
             return ListEquipe[numero];
         }
+
         /// <summary>
         /// Suppression d'un Pokémon KO de la liste des Pokémons de l'équipe
         /// </summary>
