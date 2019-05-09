@@ -107,7 +107,7 @@ namespace Pokedojo
             Pokemon attaquant = Equipe1.ChoisirActif();
             Pokemon adverse = Equipe2.ChoisirActif();
             Pokemon temp;
-            //Choix de l'équipe que attaque en premier
+            //Choix de l'équipe qui attaque en premier
             Equipe equipeAttaquante = TirerPremierJoueur();
             Equipe equipeAdverse;//équipe adverse correspond à l'équipe qui n'attaque pas
             if (equipeAttaquante == Equipe1)
@@ -117,7 +117,7 @@ namespace Pokedojo
             else
             {
                 equipeAdverse = Equipe1;
-                //On inverse le rôle des Pokémons initialisés de façon arbitraire
+                //On inverse les rôles des Pokémons initialisés de façon arbitraire
                 temp = adverse;
                 adverse = attaquant;
                 attaquant = temp;
