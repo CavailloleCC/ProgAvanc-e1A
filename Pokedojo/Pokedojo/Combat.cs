@@ -185,6 +185,7 @@ namespace Pokedojo
                         {
                             Console.WriteLine("Le Pokémon attaquant est à présent " + attaquant.Nom + "\n" + adverse.Nom + " devient adverse\n");
                         }
+                        BattreEnRetraite(equipeAdverse, ref adverse);
                     }
                     else
                     {
@@ -193,10 +194,10 @@ namespace Pokedojo
                         {
                             Console.WriteLine(attaquant.Nom + " devient attaquant\n" + adverse.Nom + " devient adverse\n");
                         }
+                        BattreEnRetraite(equipeAdverse, ref adverse);
+                        BattreEnRetraite(equipeAttaquante, ref attaquant);
                     }
                 }
-                BattreEnRetraite(equipeAdverse, ref adverse);
-                BattreEnRetraite(equipeAttaquante, ref attaquant);
             }
             if(Equipe1 is EquipeReelle || Equipe2 is EquipeReelle)
             {
