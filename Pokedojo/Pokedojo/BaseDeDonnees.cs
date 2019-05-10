@@ -79,7 +79,42 @@ namespace Pokedojo
             Pokemon toudoudou = new Pokemon("toudoudou", 90, 30, "fee", "acier OU poison", "");
             Pokemon rondoudou = new Pokemon("rondoudou", 115, 45, "fee", "acier OU poison", "");
             Pokemon grodoudou = new Pokemon("grodoudou", 140, 70, "fee", "acier OU poison", "");
-
+            Pokemon wattouat = new Pokemon("wattouat", 55, 40, "electrik", "sol", "");
+            Pokemon lainergie = new Pokemon("lainergie", 70, 55, "electrik", "sol", "");
+            Pokemon pharamp = new Pokemon("pharamp", 90, 75, "electrik", "sol", "");
+            Pokemon mystherbe = new Pokemon("mystherbe", 45, 50, "plante", "feu", "");
+            Pokemon ortide = new Pokemon("ortide", 60, 65, "plante", "feu", "");
+            Pokemon rafflesia = new Pokemon("rafflesia", 75, 80, "plante", "feu", "");
+            Pokemon azurill = new Pokemon("azurill", 75, 80, "eau", "electik", "");
+            Pokemon marill = new Pokemon("marill", 70, 20, "eau", "electik", "");
+            Pokemon azumarill = new Pokemon("azumarill", 100, 50, "eau", "electik", "");
+            Pokemon granivol = new Pokemon("granivol", 35, 35, "plante", "glace", "");
+            Pokemon floravol = new Pokemon("floravol", 55, 45, "plante", "glace", "");
+            Pokemon cotovol = new Pokemon("cotovol", 75, 55, "plante", "glace", "");
+            Pokemon magby = new Pokemon("magby", 45, 75, "feu", "sol", "");
+            Pokemon magmar = new Pokemon("magmar", 65, 95, "feu", "sol", "");
+            Pokemon maganon = new Pokemon("maganon", 75, 95, "feu", "sol", "");
+            Pokemon poussifeu = new Pokemon("poussifeu", 45, 60, "feu", "sol", "");
+            Pokemon galifeu = new Pokemon("galifeu", 60, 85, "feu", "sol", "");
+            Pokemon brasegali = new Pokemon("brasegali", 80, 120, "feu", "sol", "");
+            Pokemon arcko = new Pokemon("arcko", 40, 45, "plante", "insecte", "");
+            Pokemon massko = new Pokemon("massko", 50, 65, "plante", "insecte", "");
+            Pokemon jungko = new Pokemon("jungko", 70, 85, "plante", "insecte", "");
+            Pokemon nenupiot = new Pokemon("nenupiot", 40, 30, "eau", "insecte", "");
+            Pokemon lombre = new Pokemon("lombre", 60, 50, "eau", "insecte", "");
+            Pokemon ludicolo = new Pokemon("ludicolo", 80, 70, "eau", "insecte", "");
+            Pokemon gobou = new Pokemon("gobou", 50, 70, "eau", "electrik", "");
+            Pokemon flobio = new Pokemon("flobio", 70, 85, "eau", "plante", "");
+            Pokemon laggron = new Pokemon("laggron", 100, 110, "eau", "electrik", "");
+            Pokemon chenipotte = new Pokemon("chenipotte", 45, 45, "insecte", "feu", "");
+            Pokemon armulys = new Pokemon("armulys", 50, 35, "insecte", "roche", "");
+            Pokemon charmillon = new Pokemon("charmillon", 60, 70, "insecte", "roche", "");
+            Pokemon grainipiot = new Pokemon("grainipiot", 40, 40, "plante", "insecte", "");
+            Pokemon pifeuil = new Pokemon("pifeuil", 70, 70, "plante", "insecte", "");
+            Pokemon tengalice = new Pokemon("tengalice", 90, 100, "plante", "insecte", "");
+            Pokemon tarsal = new Pokemon("tarsal", 28, 25, "psy", "poison", "");
+            Pokemon kirlia = new Pokemon("kirlia", 38, 35, "psy", "poison", "");
+            Pokemon gardevoir = new Pokemon("gardevoir", 68, 65, "psy", "poison", "");
 
 
 
