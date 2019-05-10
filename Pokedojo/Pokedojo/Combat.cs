@@ -26,40 +26,6 @@ namespace Pokedojo
             NumeroCombat = ++_numeroCombat;
         }
 
-        public void BattreEnRetraite(Equipe equipe, ref Pokemon pokemon)
-        {
-            if(equipe is EquipeReelle)
-            {
-                bool chiffre = false;
-                int rep = 0;
-                do
-                {
-                    do
-                    {
-                        Console.WriteLine("Voulez-vous faire battre en retraite votre Pokémon actif ?(1 pour oui, 0 pour non)");
-                        try
-                        {
-                            rep = Convert.ToInt32(Console.ReadLine());
-                            chiffre = true;
-                        }
-                        catch (FormatException)
-                        {
-                            Console.WriteLine("Vous devez rentrer un entier (0 ou 1).");
-                        }
-                    } while (chiffre == false);
-                    chiffre = false;
-                    if (rep != 0 && rep != 1)
-                    {
-                        Console.WriteLine("Attention! Repondre 1 pour oui ou 0 pour non!");
-                    }
-                } while (rep != 0 && rep != 1);
-                if (rep == 1)
-                {
-                    pokemon = equipe.ChoisirActif();
-                }
-            } 
-        }
-
         /// <summary>
         /// Choix aléatoire de l'équipe jouant en premier
         /// </summary>
@@ -185,7 +151,7 @@ namespace Pokedojo
                         {
                             Console.WriteLine("Le Pokémon attaquant est à présent " + attaquant.Nom + "\n" + adverse.Nom + " devient adverse\n");
                         }
-                        BattreEnRetraite(equipeAdverse, ref adverse);
+                        equipeAdverse.BattreEnRetraite(ref adverse, ref attaquant);
                     }
                     else
                     {
@@ -194,8 +160,8 @@ namespace Pokedojo
                         {
                             Console.WriteLine(attaquant.Nom + " devient attaquant\n" + adverse.Nom + " devient adverse\n");
                         }
-                        BattreEnRetraite(equipeAdverse, ref adverse);
-                        BattreEnRetraite(equipeAttaquante, ref attaquant);
+                        equipeAdverse.BattreEnRetraite(ref attaquant, ref adverse);
+                        equipeAttaquante.BattreEnRetraite(ref attaquant, ref adverse);
                     }
                 }
             }

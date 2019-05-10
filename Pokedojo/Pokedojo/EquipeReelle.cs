@@ -61,6 +61,44 @@ namespace Pokedojo
             return ChoisirActif();
         }
 
+        public override void BattreEnRetraite(ref Pokemon attaquant, ref Pokemon adverse)
+        {
+            bool chiffre = false;
+            int rep = 0;
+            do
+            {
+                do
+                {
+                    Console.WriteLine("Voulez-vous faire battre en retraite votre Pokémon actif ?(1 pour oui, 0 pour non)");
+                    try
+                    {
+                        rep = Convert.ToInt32(Console.ReadLine());
+                        chiffre = true;
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Vous devez rentrer un entier (0 ou 1).");
+                    }
+                } while (chiffre == false);
+                chiffre = false;
+                if (rep != 0 && rep != 1)
+                {
+                    Console.WriteLine("Attention! Repondre 1 pour oui ou 0 pour non!");
+                }
+            } while (rep != 0 && rep != 1);
+            if (rep == 1)
+            {
+                if(ListEquipe.Contains(attaquant))
+                {
+                    attaquant = ChoisirActif();
+                }
+                else
+                {
+                    adverse = ChoisirActif();
+                }
+            }
+        }
+
         public override string ToString()
         {
             string chRes = "";
