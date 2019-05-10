@@ -28,7 +28,7 @@ namespace Pokedojo
             Pokemon carabaffe = new Pokemon("carabaffe", 59, 63, "eau", "electrik", "");
             Pokemon tortank = new Pokemon("tortank", 79, 83, "eau", "electrik", "");
 
-            Pokemon chenipan = new Pokemon("chenipan", 45, 30, "feu", "eau", "brulure");
+            Pokemon chenipan = new Pokemon("chenipan", 45, 30, "insecte", "feu", "gel");
             Pokemon chrysacier = new Pokemon("chrysacier", 50, 20, "insecte", "feu", "gel");
             Pokemon papilusion = new Pokemon("papilusion", 60, 45, "insecte", "feu", "gel");
 
@@ -48,8 +48,8 @@ namespace Pokedojo
             Pokemon nidorino = new Pokemon("nidorino", 61, 72, "poison", "sol", "empoisonnement");
             Pokemon nidoking = new Pokemon("nidorino", 81, 102, "poison", "sol", "empoisonnement");
 
-            Pokemon melo = new Pokemon("melo", 50, 25, "fee", "poison", "sommeil");
-            Pokemon melofee = new Pokemon("melofee", 70, 45, "fee", "poison OUUUUU acier", "");
+            Pokemon melo = new Pokemon("melo", 50, 25, "fee", "acier", "sommeil");
+            Pokemon melofee = new Pokemon("melofee", 70, 45, "fee", "acier", "");
             Pokemon melodelfe = new Pokemon("melodelfe", 95, 70, "fee", "acier", "gel");
 
             Pokemon germignon = new Pokemon("germignon", 45, 49, "plante", "insecte", "");
@@ -64,12 +64,12 @@ namespace Pokedojo
             Pokemon tetarte = new Pokemon("tetarte", 65, 65, "eau", "electrik", "sommeil");
             Pokemon tartard = new Pokemon("tartard", 90, 95, "eau", "electrik", "sommeil");
 
-            Pokemon abra = new Pokemon("abra", 25, 20, "psy", "tenebres", "");
-            Pokemon kadabra = new Pokemon("kadabra", 40, 35, "psy", "insecte", "empoisonnement");
-            Pokemon alakazam = new Pokemon("alakazam", 55, 50, "psy", "tenebres", "paralysie");
+            Pokemon sorbebe = new Pokemon("sorbebe", 36, 50, "glace", "roche", "");
+            Pokemon sorboul = new Pokemon("sorboul", 51, 65, "glace", "roche", "");
+            Pokemon sorbouboul = new Pokemon("sorbouboul", 71, 95, "glace", "roche", "");
 
-            Pokemon machoc = new Pokemon("machoc", 70, 80, "combat", "psy", "gel");
-            Pokemon machopeur = new Pokemon("machopeur", 80, 100, "combat", "fee", "paralysie");
+            Pokemon machoc = new Pokemon("machoc", 70, 80, "combat", "psy", "");
+            Pokemon machopeur = new Pokemon("machopeur", 80, 100, "combat", "fee", "");
             Pokemon mackogneur = new Pokemon("mackogneur", 90, 130, "combat", "psy", "");
 
             Pokemon racaillou = new Pokemon("racaillou", 40, 80, "roche", "plante", "");
@@ -80,9 +80,9 @@ namespace Pokedojo
             Pokemon boustiflor = new Pokemon("boustiflor", 65, 90, "plante", "feu", "");
             Pokemon empiflor = new Pokemon("empiflor", 80, 105, "plante", "feu", "");
 
-            Pokemon hypotrempe = new Pokemon("hypotrempe", 30, 40, "eau", "dragon OUUU feu", "");
-            Pokemon hypocean = new Pokemon("hypocean", 55, 65, "eau", "dragon OUUU feu", "");
-            Pokemon hyporoi = new Pokemon("hyporoi", 75, 95, "eau", "dragon OUUU feu", "");
+            Pokemon hypotrempe = new Pokemon("hypotrempe", 30, 40, "eau", "dragon", "");
+            Pokemon hypocean = new Pokemon("hypocean", 55, 65, "eau", "feu", "");
+            Pokemon hyporoi = new Pokemon("hyporoi", 75, 95, "eau", "feu", "");
 
             Pokemon porygon = new Pokemon("porygon", 65, 60, "normal", "combat", "");
             Pokemon porygon2 = new Pokemon("porygon", 85, 80, "normal", "combat", "");
@@ -100,9 +100,9 @@ namespace Pokedojo
             Pokemon nosferalto = new Pokemon("nosferalto", 75, 80, "poison", "psy", "");
             Pokemon nostenfer = new Pokemon("nostenfer", 85, 90, "poison", "psy", "");
 
-            Pokemon toudoudou = new Pokemon("toudoudou", 90, 30, "fee", "acier OU poison", "");
-            Pokemon rondoudou = new Pokemon("rondoudou", 115, 45, "fee", "acier OU poison", "");
-            Pokemon grodoudou = new Pokemon("grodoudou", 140, 70, "fee", "acier OU poison", "");
+            Pokemon toudoudou = new Pokemon("toudoudou", 90, 30, "fee", "poison", "");
+            Pokemon rondoudou = new Pokemon("rondoudou", 115, 45, "fee", "poison", "");
+            Pokemon grodoudou = new Pokemon("grodoudou", 140, 70, "fee", "poison", "");
 
             Pokemon wattouat = new Pokemon("wattouat", 55, 40, "electrik", "sol", "");
             Pokemon lainergie = new Pokemon("lainergie", 70, 55, "electrik", "sol", "");
@@ -128,21 +128,21 @@ namespace Pokedojo
             Pokemon galifeu = new Pokemon("galifeu", 60, 85, "feu", "sol", "");
             Pokemon brasegali = new Pokemon("brasegali", 80, 120, "feu", "sol", "");
 
-            Pokemon arcko = new Pokemon("arcko", 40, 45, "plante", "insecte", "");
+            Pokemon arcko = new Pokemon("arcko", 45, 55, "plante", "insecte", "");
             Pokemon massko = new Pokemon("massko", 50, 65, "plante", "insecte", "");
             Pokemon jungko = new Pokemon("jungko", 70, 85, "plante", "insecte", "");
 
-            Pokemon nenupiot = new Pokemon("nenupiot", 40, 30, "eau", "insecte", "");
-            Pokemon lombre = new Pokemon("lombre", 60, 50, "eau", "insecte", "");
-            Pokemon ludicolo = new Pokemon("ludicolo", 80, 70, "eau", "insecte", "");
+            Pokemon bebecaille = new Pokemon("bebecaille", 60, 50, "combat", "dragon", "");
+            Pokemon ecaid = new Pokemon("ecaid", 55, 75, "combat", "dragon", "");
+            Pokemon ekaiser = new Pokemon("ekaiser", 75, 110, "combat", "dragon", "");
 
-            Pokemon gobou = new Pokemon("gobou", 50, 70, "eau", "electrik", "");
+            Pokemon gobou = new Pokemon("gobou", 50, 70, "eau", "plante", "");
             Pokemon flobio = new Pokemon("flobio", 70, 85, "eau", "plante", "");
-            Pokemon laggron = new Pokemon("laggron", 100, 110, "eau", "electrik", "");
+            Pokemon laggron = new Pokemon("laggron", 100, 110, "eau", "plante", "");
 
             Pokemon chenipotte = new Pokemon("chenipotte", 45, 45, "insecte", "feu", "");
-            Pokemon armulys = new Pokemon("armulys", 50, 35, "insecte", "roche", "");
-            Pokemon charmillon = new Pokemon("charmillon", 60, 70, "insecte", "roche", "");
+            Pokemon armulys = new Pokemon("armulys", 50, 35, "insecte", "feu", "");
+            Pokemon charmillon = new Pokemon("charmillon", 60, 70, "insecte", "feu", "");
 
             Pokemon grainipiot = new Pokemon("grainipiot", 40, 40, "plante", "insecte", "");
             Pokemon pifeuil = new Pokemon("pifeuil", 70, 70, "plante", "insecte", "");
@@ -166,9 +166,40 @@ namespace Pokedojo
 
             Pokemon terhal = new Pokemon("terhal", 40, 55, "acier", "feu", "");
             Pokemon metang = new Pokemon("metang", 60, 75, "acier", "feu", "");
-            Pokemon metalosse = new Pokemon("terhal", 80, 135, "acier", "feu", "");
+            Pokemon metalosse = new Pokemon("metalosse", 80, 135, "acier", "feu", "");
             //38 pokemons normaux + 38 pokemons évolués1 + 38 pokemons évolués2
 
+            Pokemon tortipouss = new Pokemon("tortipouss", 55, 68, "plante", "insecte", "");
+            Pokemon boskara = new Pokemon("boskara", 75, 89, "plante", "insecte", "");
+            Pokemon torterra = new Pokemon("torterra", 95, 109, "plante", "glace", "");
+
+            Pokemon obalie = new Pokemon("obalie", 70, 40, "glace", "plante", "");
+            Pokemon phogleur = new Pokemon("phogleur", 90, 60, "glace", "plante", "");
+            Pokemon kaimorse = new Pokemon("kaimorse", 110, 80, "glace", "plante", "");
+
+            Pokemon griknot = new Pokemon("griknot", 58, 70, "dragon", "glace", "");
+            Pokemon carmache = new Pokemon("carmache", 68, 90, "dragon", "glace", "");
+            Pokemon carchacrok = new Pokemon("carchacrok", 108, 130, "dragon", "glace", "");
+
+            Pokemon chuchmur = new Pokemon("chuchmur", 64, 51, "normal", "combat", "");
+            Pokemon ramboum = new Pokemon("ramboum", 84, 71, "normal", "combat", "");
+            Pokemon brouhabam = new Pokemon("brouhabam", 104, 91, "normal", "combat", "");
+
+            Pokemon galekid = new Pokemon("galekid", 50, 70, "acier", "combat", "");
+            Pokemon galegon = new Pokemon("galegon", 60, 90, "acier", "combat", "");
+            Pokemon galeking = new Pokemon("galeking", 70, 110, "acier", "combat", "");
+
+            Pokemon etourmi = new Pokemon("etourmi", 40, 55, "normal", "electrik", "");
+            Pokemon etourvol = new Pokemon("etourvol", 55, 75, "normal", "electrik", "");
+            Pokemon etouraptor = new Pokemon("etouraptor", 85, 120, "normal", "electrik", "");
+
+            Pokemon lixy = new Pokemon("lixy", 45, 65, "electrik", "sol", "");
+            Pokemon luxio = new Pokemon("luxio", 60, 85, "electrik", "sol", "");
+            Pokemon luxray = new Pokemon("luxray", 80, 120, "electrik", "sol", "");
+
+            Pokemon ptiravi = new Pokemon("ptiravi", 100, 5, "normal", "combat", "");
+            Pokemon leveinard = new Pokemon("leveinard", 250, 5, "normal", "combat", "");
+            Pokemon leuphorie = new Pokemon("leuphorie", 255, 10, "normal", "combat", "");
 
 
             ListePokemonEvolue0 = new List<Pokemon> { };
