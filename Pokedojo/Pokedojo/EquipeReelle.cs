@@ -19,7 +19,7 @@ namespace Pokedojo
         }
 
         /// <summary>
-        /// Choix par le joueur du Pokémon actif parmi les Pokémons de l'équipe : retourne le Pokémon actif
+        /// Choix par le joueur du Pokémon actif parmi les Pokémons de l'équipe : Choix au début de la partie
         /// </summary>
         /// <param name="equipe"></param>
         /// <returns></returns>
@@ -32,6 +32,7 @@ namespace Pokedojo
             {
                 Console.WriteLine("Quel Pokémon voulez-vous faire combattre ?");
                 nomPokemon = Convert.ToString(Console.ReadLine());
+                Console.WriteLine();
                 i = 0;
                 while (i < ListEquipe.Count && ListEquipe[i].Nom != nomPokemon)
                 {
@@ -47,6 +48,55 @@ namespace Pokedojo
                 }
             } while (trouve == false);
             return ListEquipe[i];
+        }
+
+        /// <summary>
+        /// Choix d'un Pokémon au cours de la partie
+        /// </summary>
+        /// <param name="adverse"></param>
+        /// <returns></returns>
+        public override Pokemon ChoisirActif(Pokemon adverse)
+        {
+            Console.WriteLine("Votre adversaire est " + adverse.Nom);
+            return ChoisirActif();
+        }
+
+        public override void BattreEnRetraite(ref Pokemon attaquant, ref Pokemon adverse)
+        {
+            bool chiffre = false;
+            int rep = 0;
+            do
+            {
+                do
+                {
+                    Console.WriteLine("Voulez-vous faire battre en retraite votre Pokémon actif ?(1 pour oui, 0 pour non)");
+                    try
+                    {
+                        rep = Convert.ToInt32(Console.ReadLine());
+                        chiffre = true;
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Vous devez rentrer un entier (0 ou 1).");
+                    }
+                } while (chiffre == false);
+                chiffre = false;
+                if (rep != 0 && rep != 1)
+                {
+                    Console.WriteLine("Attention! Repondre 1 pour oui ou 0 pour non!");
+                }
+            } while (rep != 0 && rep != 1);
+            if (rep == 1)
+            {
+                if(ListEquipe.Contains(attaquant))
+                {
+                    attaquant = ChoisirActif();
+                }
+                else
+                {
+                    adverse = ChoisirActif();
+                }
+            }
         }
 
         public override string ToString()
