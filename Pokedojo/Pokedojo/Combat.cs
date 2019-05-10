@@ -180,7 +180,7 @@ namespace Pokedojo
                             Console.WriteLine(Equipe1);
                             Console.WriteLine(Equipe2);
                         }
-                        attaquant = equipeAttaquante.ChoisirActif();
+                        attaquant = equipeAttaquante.ChoisirActif(adverse);
                         if(Equipe1 is EquipeReelle || Equipe2 is EquipeReelle)
                         {
                             Console.WriteLine("Le Pokémon attaquant est à présent " + attaquant.Nom + "\n" + adverse.Nom + " devient adverse\n");
