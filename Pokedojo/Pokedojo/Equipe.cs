@@ -44,7 +44,65 @@ namespace Pokedojo
             return ListEquipe[numero];
         }
 
-
+        /// <summary>
+        /// Choix d'un Pokémon de façon intelligente
+        /// </summary>
+        /// <param name="adverse"></param>
+        /// <returns></returns>
+        public virtual Pokemon ChoisirActif(Pokemon adverse)
+        {
+            bool choix = false;
+            Pokemon actif = ListEquipe[0];
+            //Choix d'un Pokémon ayant une puissance d'attaque minimale supérieure au nombre de PV de l'adversaire si possible
+            foreach (Pokemon pok in ListEquipe)
+            {
+                if (adverse.Pv <= pok.Puissance)
+                {
+                    if (choix == true && pok.Puissance < actif.Puissance)
+                    {
+                        actif = pok;
+                        choix = true;
+                    }
+                    else
+                    {
+                        if (choix == false)
+                        {
+                            actif = pok;
+                            choix = true;
+                        }
+                    }
+                }
+            }
+            //Si pas possible : choix d'un Pokémon ayant un nombre le point de vie minimal supérieur à la puissance d'attaque de l'adversaire (pour éviter qu'il nous mette KO au tour suivant)
+            if (choix == false)
+            {
+                foreach (Pokemon pok in ListEquipe)
+                {
+                    if (adverse.Puissance < pok.Pv)
+                    {
+                        if (choix == true && pok.Pv < actif.Puissance)
+                        {
+                            actif = pok;
+                            choix = true;
+                        }
+                        else
+                        {
+                            if (choix == false)
+                            {
+                                actif = pok;
+                                choix = true;
+                            }
+                        }
+                    }
+                }
+            }
+            //Sinon choix aléatoire 
+            if (choix == false)
+            {
+                actif = ChoisirActif();
+            }
+            return actif;
+        }
         /// <summary>
         /// Suppression d'un Pokémon KO de la liste des Pokémons de l'équipe
         /// </summary>
