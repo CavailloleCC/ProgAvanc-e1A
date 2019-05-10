@@ -44,10 +44,6 @@ namespace Pokedojo
             return ListEquipe[numero];
         }
 
-        public virtual Pokemon ChoisirActif(Pokemon adverse)
-        {
-            return 
-        }
 
         /// <summary>
         /// Suppression d'un Pokémon KO de la liste des Pokémons de l'équipe

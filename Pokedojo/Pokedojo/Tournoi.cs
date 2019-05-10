@@ -55,8 +55,8 @@ namespace Pokedojo
                     equipe2 = equipeDispo[index2];
                     equipeDispo.RemoveAt(index2);
                     combat = new Combat(equipe1, equipe2);
-                    vainqueur = combat.Combattre();
                     Console.Write(combat);
+                    vainqueur = combat.Combattre();
                     if (vainqueur == equipe1)
                     {
                         ListeTournoi.Remove(equipe2);
