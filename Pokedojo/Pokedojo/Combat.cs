@@ -76,8 +76,6 @@ namespace Pokedojo
             if(adverse.Pv<=0)
             {
                 equipeAdverse.SupprimerPokemonKO(adverse);
-                //On met le nombre de victoires consécutives à 0 car le Pokémon qui avait éventuellement fait une victoire au tour d'avant est KO et ne pourra pas en faire d'autre
-                equipeAdverse.VictoiresConsecutives = 0;
                 if (equipeAdverse is EquipeReelle || equipeAttaquante is EquipeReelle)
                 {
                     Console.WriteLine(adverse.Nom+" a été mis KO par "+attaquant.Nom);
@@ -86,7 +84,7 @@ namespace Pokedojo
                 if(equipeAttaquante.VictoiresConsecutives>0)
                 {
                     equipeAttaquante.VictoiresConsecutives += 1;
-                    if(equipeAttaquante.VictoiresConsecutives>1)
+                    if(equipeAttaquante.VictoiresConsecutives>1 && equipeAttaquante.VictoiresConsecutives<5)//Au bout de 4 victoires consécutives on arrive à l'évolution maximale du Pokémon
                     {
                         equipeAttaquante.Evoluer(attaquant);
                     }

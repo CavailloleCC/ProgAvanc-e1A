@@ -37,6 +37,11 @@ namespace Pokedojo
             }
         }
 
+        /// <summary>
+        /// Renvoie true si l'équipe possède le Pokémon, false sinon
+        /// </summary>
+        /// <param name="pokemon"></param>
+        /// <returns></returns>
         public bool PossederPokemon(Pokemon pokemon)
         {
             int i = 0;
@@ -55,13 +60,15 @@ namespace Pokedojo
         }
 
         /// <summary>
-        /// Choix aléatoire du Pokémon actif parmi les Pokémons de l'équipe : retourne le nom du Pokémon actif
+        /// Choix aléatoire du Pokémon actif parmi les Pokémons de l'équipe en début de combat : retourne le nom du Pokémon actif
         /// </summary>
         /// <returns></returns>
         public virtual void ChoisirActif(out Pokemon actif)
         {
             int numero = _alea.Next(NbPokemon);
             actif = ListEquipe[numero][0];
+            //Le nombre de victoire consécutives est remis à 0 lorsqu'on commence un nouveau combat
+            VictoiresConsecutives = 0;
         }
 
         /// <summary>
@@ -128,12 +135,15 @@ namespace Pokedojo
             }
             attaquant = actif;
         }
+
         /// <summary>
         /// Suppression d'un Pokémon KO et des ses Pokémons évolués 
         /// </summary>
         /// <param name="pokemon"></param>
         public void SupprimerPokemonKO(Pokemon pokemon)
         {
+            //Lorsqu'un Pokémon est KO il ne pourra plus faire de victoires consécutives : le nombre de victoires consécutives passe à 0
+            VictoiresConsecutives = 0;
             int i = 0;
             if(pokemon.Pv <= 0)
             {
@@ -235,6 +245,7 @@ namespace Pokedojo
             {
                 i++;
             }
+            //Si une évoltion est encore possible pour le Pokémon
             if(i<ListEquipe.Count && ListEquipe[i].Count>1)
             {
                 ListEquipe[i].Remove(ListEquipe[i][0]);

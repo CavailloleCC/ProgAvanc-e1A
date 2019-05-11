@@ -48,6 +48,8 @@ namespace Pokedojo
                 }
             } while (trouve == false);
             actif= ListEquipe[i][0];
+            //Le nombre de victoires consécutives est remis à 0 losrqu'on commence un nouveau combat
+            VictoiresConsecutives = 0; 
         }
 
         /// <summary>
