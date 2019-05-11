@@ -14,6 +14,7 @@ namespace Pokedojo
         public string Type { get; protected set; }
         public string Faiblesse { get; protected set; }
         public string AttaqueSpe { get; protected set; }
+        public int PvMax { get; protected set; }
 
         /// <summary>
         /// Constructeur de Pokémon avec attaque spécifique 
@@ -32,6 +33,7 @@ namespace Pokedojo
             Type = type;
             Faiblesse = faiblesse;
             AttaqueSpe = attaqueSpe;
+            PvMax = pv;
         }
 
         /// <summary>
