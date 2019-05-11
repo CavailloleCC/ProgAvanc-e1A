@@ -27,24 +27,25 @@ namespace Pokedojo
         }
 
         /// <summary>
-        /// Choix aléatoire de l'équipe jouant en premier
+        /// Choix aléatoire de l'équipe jouant en premier : Attribue l'équipe qui attaque en premier à equipeAttaquante et l'autre équipe à equipeAdverse
         /// </summary>
         /// <returns></returns>
-        public Equipe TirerPremierJoueur()
+        public void TirerPremierJoueur(out Equipe equipeAttaquante, out Equipe equipeAdverse)
         {
-            Equipe premiereEquipe;
             int premierEquipe = _alea.Next(1, 3);
             if(premierEquipe == 1)
             {
-                premiereEquipe = Equipe1;
+                equipeAttaquante = Equipe1;
+                equipeAdverse = Equipe2;
             }
             else
             {
-                premiereEquipe = Equipe2;
+                equipeAttaquante = Equipe2;
+                equipeAdverse = Equipe1;
             }
             if(Equipe1 is EquipeReelle || Equipe2 is EquipeReelle)
             {
-                if(premiereEquipe is EquipeReelle)
+                if(equipeAttaquante is EquipeReelle)
                 {
                     Console.WriteLine("C'est à votre équipe d'attaquer en premier.");
                 }
@@ -53,8 +54,6 @@ namespace Pokedojo
                     Console.WriteLine("C'est à l'équipe adverse d'attaquer en premier");
                 }
             }
-            return premiereEquipe;
-
         }
 
         /// <summary>
@@ -77,12 +76,34 @@ namespace Pokedojo
             if(adverse.Pv<=0)
             {
                 equipeAdverse.SupprimerPokemonKO(adverse);
+                //On met le nombre de victoires consécutives à 0 car le Pokémon qui avait éventuellement fait une victoire au tour d'avant est KO et ne pourra pas en faire d'autre
+                equipeAdverse.VictoiresConsecutives = 0;
                 if (equipeAdverse is EquipeReelle || equipeAttaquante is EquipeReelle)
                 {
                     Console.WriteLine(adverse.Nom+" a été mis KO par "+attaquant.Nom);
                 }
+                //Si l'équipe attaquante a déjà fait une victoire au combat précédent et qu'elle n'a pas changé de Pokémon entre temps
+                if(equipeAttaquante.VictoiresConsecutives>0)
+                {
+                    equipeAttaquante.VictoiresConsecutives += 1;
+                    if(equipeAttaquante.VictoiresConsecutives>1)
+                    {
+                        equipeAttaquante.Evoluer(attaquant);
+                    }
+                }
+                //Si ce n'est pas une victoire consécutive du Pokémon actif
+                else
+                {
+                    equipeAttaquante.VictoiresConsecutives += 1;
+                }
+            }
+            //Si le Pokémon ne fait pas de KO, on met le nombre de victoire consécutives à 0
+            else
+            {
+                equipeAttaquante.VictoiresConsecutives = 0;
             }
         }
+
         /// <summary>
         /// Simule un combat entre deux équipes et retourne l'équipe vainqueur
         /// </summary>
@@ -110,21 +131,11 @@ namespace Pokedojo
             Equipe2.ChoisirActif(out adverse);
             Pokemon temp;
             //Choix de l'équipe qui attaque en premier
-            Equipe equipeAttaquante = TirerPremierJoueur();
+            Equipe equipeAttaquante;
             Equipe equipeAdverse;//équipe adverse correspond à l'équipe qui n'attaque pas
-            if (equipeAttaquante == Equipe1)
-            {
-                equipeAdverse = Equipe2;
-            }
-            else
-            {
-                equipeAdverse = Equipe1;
-                //On inverse les rôles des Pokémons initialisés de façon arbitraire
-                temp = adverse;
-                adverse = attaquant;
-                attaquant = temp;
-            }
-
+            TirerPremierJoueur(out equipeAttaquante, out equipeAdverse);
+            bool retraiteAdverse;
+            bool retraiteAttaquant;
             while (equipeAdverse.NbPokemon != 0 && equipeAttaquante.NbPokemon != 0)
             {
                 Attaquer(equipeAttaquante, equipeAdverse, attaquant, adverse);
@@ -162,8 +173,19 @@ namespace Pokedojo
                         {
                             Console.WriteLine(attaquant.Nom + " devient attaquant\n" + adverse.Nom + " devient adverse\n");
                         }
-                        equipeAdverse.BattreEnRetraite(ref attaquant, ref adverse);
-                        equipeAttaquante.BattreEnRetraite(ref attaquant, ref adverse);
+                        retraiteAdverse = equipeAdverse.BattreEnRetraite(ref attaquant, ref adverse);
+                        retraiteAttaquant=equipeAttaquante.BattreEnRetraite(ref attaquant, ref adverse);
+                        if (equipeAdverse is EquipeReelle && retraiteAttaquant == true)
+                        {
+                            Console.WriteLine("Votre adversaire a fait battre en retraite son pokémon, son nouveau pokémon actif est " + attaquant.Nom);
+                        }
+                        else
+                        {
+                            if(equipeAttaquante is EquipeReelle && retraiteAdverse==true)
+                            {
+                                Console.WriteLine("Votre adversaire a fait battre en retraite son pokémon, son nouveau pokémon actif est " + adverse.Nom);
+                            }
+                        }
                     }
                 }
             }

@@ -14,6 +14,7 @@ namespace Pokedojo
         protected static int _numeroEquipe = 0;
         public BaseDeDonnees BddPokemon { get; set; }
         public int Numero { get; protected set; }
+        public int VictoiresConsecutives { get; set; }
 
         /// <summary>
         /// Constructeur de la classe Equipe
@@ -24,6 +25,7 @@ namespace Pokedojo
             NbPokemon = 3;
             BddPokemon = bddPokemon;
             Numero = ++_numeroEquipe;
+            VictoiresConsecutives = 0;
             ListEquipe = new List<List<Pokemon>>();
             int index;
             for(int i=0; i<3; i++)
@@ -127,7 +129,7 @@ namespace Pokedojo
             attaquant = actif;
         }
         /// <summary>
-        /// Suppression d'un Pokémon KO de la liste des Pokémons de l'équipe
+        /// Suppression d'un Pokémon KO et des ses Pokémons évolués 
         /// </summary>
         /// <param name="pokemon"></param>
         public void SupprimerPokemonKO(Pokemon pokemon)
@@ -147,7 +149,17 @@ namespace Pokedojo
             }
         }
 
-        public virtual void BattreEnRetraite(ref Pokemon attaquant, ref Pokemon adverse)
+        /// <summary>
+        /// Fait battre en retraite le Pokmon actif de l'équipe si :
+        /// -le joueur est attaquant et que sa puissance d'attaque est inférieure au nombre de PV de son adversaire mais qu'il possède un Pokémon dont la puissance est supérieur à ce nombre de PV
+        /// -le joueur est adverse et que son nombre de PV est inférieur ou égal à la puissance d'attaque de son adversaire mais qu'il possède un Pokémon dont le nombre de PV est supérieur à cette puissance 
+        /// Retourne true si le Pokémon a été mis en retraite, false sinon : Le nombre de victoires consécutives passe à 0 lorsque la fonction renvoie true
+        /// 
+        /// </summary>
+        /// <param name="attaquant"></param>
+        /// <param name="adverse"></param>
+        /// <returns></returns>
+        public virtual bool BattreEnRetraite(ref Pokemon attaquant, ref Pokemon adverse)
         {
             bool changement = false;
             int k = 0;
@@ -176,10 +188,6 @@ namespace Pokedojo
                         k++;
                     }
                 }
-                if(changement==true)
-                {
-                    Console.WriteLine("Votre adversaire a fait battre en retraite son pokémon, son nouveau pokémon actif est " + attaquant);
-                }
             }
             //Si l'équipe est adverse : Si son nombre de PV est inférieur à la puissance d'attaque de l'adversaire, on change 
             else
@@ -207,12 +215,32 @@ namespace Pokedojo
                         k++;
                     }
                 }
-                if (changement == true)
-                {
-                    Console.WriteLine("Votre adversaire a fait battre en retraite son pokémon, son nouveau pokémon actif est " + adverse);
-                }
+            }
+            //Si on change de Pokémon, le nombre de victoires consécutives passe à 0
+            if(changement==true)
+            {
+                VictoiresConsecutives = 0;
+            }
+            return changement;
+        }
+
+        /// <summary>
+        /// Faire évoluer un Pokémon quand c'est possible (2 évolutions possibles par tournoi)
+        /// </summary>
+        /// <param name="pokemon"></param>
+        public void Evoluer(Pokemon pokemon)
+        {
+            int i = 0;
+            while(i<ListEquipe.Count && ListEquipe[i][0]!=pokemon)
+            {
+                i++;
+            }
+            if(i<ListEquipe.Count && ListEquipe[i].Count>1)
+            {
+                ListEquipe[i].Remove(ListEquipe[i][0]);
             }
         }
+
 
         public override string ToString()
         {

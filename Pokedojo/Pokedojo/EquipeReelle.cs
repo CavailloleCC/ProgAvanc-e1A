@@ -61,7 +61,13 @@ namespace Pokedojo
             ChoisirActif(out attaquant);
         }
 
-        public override void BattreEnRetraite(ref Pokemon attaquant, ref Pokemon adverse)
+        /// <summary>
+        /// Demande au joueur s'il veut faire battre en retraite son Pokémon actif : renvoie true si il l'a fait battre en retraite, false sinon
+        /// </summary>
+        /// <param name="attaquant"></param>
+        /// <param name="adverse"></param>
+        /// <returns></returns>
+        public override bool BattreEnRetraite(ref Pokemon attaquant, ref Pokemon adverse)
         {
             bool chiffre = false;
             int rep = 0;
@@ -88,6 +94,7 @@ namespace Pokedojo
             } while (rep != 0 && rep != 1);
             if (rep == 1)
             {
+                chiffre = true;
                 //Si le joueur est attaquant 
                 if(PossederPokemon(attaquant)==true)
                 {
@@ -99,6 +106,11 @@ namespace Pokedojo
                     ChoisirActif(out adverse);
                 }
             }
+            if(chiffre == true)
+            {
+                VictoiresConsecutives = 0;
+            }
+            return chiffre;
         }
 
         public override string ToString()
