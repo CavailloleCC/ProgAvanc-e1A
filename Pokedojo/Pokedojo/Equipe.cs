@@ -133,15 +133,17 @@ namespace Pokedojo
         public void SupprimerPokemonKO(Pokemon pokemon)
         {
             int i = 0;
-            while(i<ListEquipe.Count && ListEquipe[i][0]!=pokemon)
             if(pokemon.Pv <= 0)
             {
                 while(i<ListEquipe.Count && ListEquipe[i][0]!=pokemon)
                 {
                     i++;
                 }
-                ListEquipe.Remove(ListEquipe[i]);
-                NbPokemon = NbPokemon-1;
+                if(i<ListEquipe.Count)
+                {
+                    ListEquipe.Remove(ListEquipe[i]);
+                    NbPokemon = NbPokemon - 1;
+                }
             }
         }
 
