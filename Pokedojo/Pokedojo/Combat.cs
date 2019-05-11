@@ -104,8 +104,10 @@ namespace Pokedojo
                 Console.WriteLine(Equipe2);
             }
             //Choix des Pokémons actifs pour chacune des deux équipes (on initialise leur rôle arbitrairement)
-            Pokemon attaquant = Equipe1.ChoisirActif();
-            Pokemon adverse = Equipe2.ChoisirActif();
+            Pokemon attaquant;
+            Equipe1.ChoisirActif(out attaquant);
+            Pokemon adverse;
+            Equipe2.ChoisirActif(out adverse);
             Pokemon temp;
             //Choix de l'équipe qui attaque en premier
             Equipe equipeAttaquante = TirerPremierJoueur();
@@ -146,7 +148,7 @@ namespace Pokedojo
                             Console.WriteLine(Equipe1);
                             Console.WriteLine(Equipe2);
                         }
-                        attaquant = equipeAttaquante.ChoisirActif(adverse);
+                        equipeAttaquante.ChoisirActif(ref attaquant, adverse);
                         if(Equipe1 is EquipeReelle || Equipe2 is EquipeReelle)
                         {
                             Console.WriteLine("Le Pokémon attaquant est à présent " + attaquant.Nom + "\n" + adverse.Nom + " devient adverse\n");

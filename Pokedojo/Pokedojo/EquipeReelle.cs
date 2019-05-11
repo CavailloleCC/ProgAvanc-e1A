@@ -23,7 +23,7 @@ namespace Pokedojo
         /// </summary>
         /// <param name="equipe"></param>
         /// <returns></returns>
-        public override Pokemon ChoisirActif()
+        public override void ChoisirActif(out Pokemon actif)
         {
             bool trouve = false;
             string nomPokemon;
@@ -34,7 +34,7 @@ namespace Pokedojo
                 nomPokemon = Convert.ToString(Console.ReadLine());
                 Console.WriteLine();
                 i = 0;
-                while (i < ListEquipe.Count && ListEquipe[i].Nom != nomPokemon)
+                while (i < ListEquipe.Count && ListEquipe[i][0].Nom != nomPokemon)
                 {
                     i++;
                 }
@@ -47,7 +47,7 @@ namespace Pokedojo
                     trouve = true;
                 }
             } while (trouve == false);
-            return ListEquipe[i];
+            actif= ListEquipe[i][0];
         }
 
         /// <summary>
@@ -55,10 +55,10 @@ namespace Pokedojo
         /// </summary>
         /// <param name="adverse"></param>
         /// <returns></returns>
-        public override Pokemon ChoisirActif(Pokemon adverse)
+        public override void ChoisirActif(ref Pokemon attaquant, Pokemon adverse)
         {
-            Console.WriteLine("Votre adversaire est " + adverse.Nom);
-            return ChoisirActif();
+            Console.WriteLine("L'adversaire de votre Pokémon est " + adverse.Nom);
+            ChoisirActif(out attaquant);
         }
 
         public override void BattreEnRetraite(ref Pokemon attaquant, ref Pokemon adverse)
@@ -88,13 +88,15 @@ namespace Pokedojo
             } while (rep != 0 && rep != 1);
             if (rep == 1)
             {
-                if(ListEquipe.Contains(attaquant))
+                //Si le joueur est attaquant 
+                if(PossederPokemon(attaquant)==true)
                 {
-                    attaquant = ChoisirActif();
+                    ChoisirActif(out attaquant);
                 }
+                //Si le joueur est adverse
                 else
                 {
-                    adverse = ChoisirActif();
+                    ChoisirActif(out adverse);
                 }
             }
         }
@@ -104,10 +106,12 @@ namespace Pokedojo
             string chRes = "";
             chRes = chRes + "Equipe " + NomEquipe+" : Equipe "+Numero;
             chRes = chRes + "\n---------------------------------------\n";
-            foreach (Pokemon pokemon in ListEquipe)
+            int i = 0;
+            while(i<ListEquipe.Count)
             {
-                chRes = chRes + pokemon.ToString();
+                chRes = chRes + ListEquipe[i][0].ToString();
                 chRes = chRes + "---------------------------------------\n";
+                i++;
             }
             return chRes;
         }

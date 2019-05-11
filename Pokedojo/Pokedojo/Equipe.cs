@@ -8,7 +8,7 @@ namespace Pokedojo
 {
     class Equipe
     {
-        public List<Pokemon> ListEquipe { get; set; }
+        public List<List<Pokemon>> ListEquipe { get; set; }
         public int NbPokemon { get; set; }
         public Random _alea = new Random();
         protected static int _numeroEquipe = 0;
@@ -24,13 +24,31 @@ namespace Pokedojo
             NbPokemon = 3;
             BddPokemon = bddPokemon;
             Numero = ++_numeroEquipe;
-            ListEquipe = new List<Pokemon>();
+            ListEquipe = new List<List<Pokemon>>();
             int index;
             for(int i=0; i<3; i++)
             {
                 index = _alea.Next(BddPokemon.NbPokemonDispo);
-                ListEquipe.Add(BddPokemon.ListePokemon[index]);
-                BddPokemon.SupprimerPokemon(BddPokemon.ListePokemon[index]);
+                int b = BddPokemon.NbPokemonDispo;
+                ListEquipe.Add(BddPokemon.ListeBddPokemon[index]);
+                BddPokemon.SupprimerPokemon(BddPokemon.ListeBddPokemon[index]);
+            }
+        }
+
+        public bool PossederPokemon(Pokemon pokemon)
+        {
+            int i = 0;
+            while(i<ListEquipe.Count && ListEquipe[i][0]!=pokemon)
+            {
+                i++;
+            }
+            if(i==ListEquipe.Count)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
 
@@ -38,10 +56,10 @@ namespace Pokedojo
         /// Choix aléatoire du Pokémon actif parmi les Pokémons de l'équipe : retourne le nom du Pokémon actif
         /// </summary>
         /// <returns></returns>
-        public virtual Pokemon ChoisirActif()
+        public virtual void ChoisirActif(out Pokemon actif)
         {
             int numero = _alea.Next(NbPokemon);
-            return ListEquipe[numero];
+            actif = ListEquipe[numero][0];
         }
 
         /// <summary>
@@ -49,59 +67,64 @@ namespace Pokedojo
         /// </summary>
         /// <param name="adverse"></param>
         /// <returns></returns>
-        public virtual Pokemon ChoisirActif(Pokemon adverse)
+        public virtual void ChoisirActif(ref Pokemon attaquant, Pokemon adverse)
         {
             bool choix = false;
-            Pokemon actif = ListEquipe[0];
+            Pokemon actif = ListEquipe[0][0];
+            int i = 0;
             //Choix d'un Pokémon ayant une puissance d'attaque minimale supérieure au nombre de PV de l'adversaire si possible
-            foreach (Pokemon pok in ListEquipe)
+            while (i < ListEquipe.Count)
             {
-                if (adverse.Pv <= pok.Puissance)
+                if (adverse.Pv <= ListEquipe[i][0].Puissance)
                 {
-                    if (choix == true && pok.Puissance < actif.Puissance)
+                    if (choix == true && ListEquipe[i][0].Puissance < actif.Puissance)
                     {
-                        actif = pok;
-                        choix = true;
+                        actif = ListEquipe[i][0];
                     }
                     else
                     {
                         if (choix == false)
                         {
-                            actif = pok;
+                            actif = ListEquipe[i][0];
                             choix = true;
                         }
                     }
                 }
+                i++;
             }
+            i = 0;
             //Si pas possible : choix d'un Pokémon ayant un nombre le point de vie minimal supérieur à la puissance d'attaque de l'adversaire (pour éviter qu'il nous mette KO au tour suivant)
             if (choix == false)
             {
-                foreach (Pokemon pok in ListEquipe)
+                if (attaquant.Pv <= adverse.Puissance)
                 {
-                    if (adverse.Puissance < pok.Pv)
+                    while (i < ListEquipe.Count)
                     {
-                        if (choix == true && pok.Pv < actif.Puissance)
+                        if (adverse.Puissance < ListEquipe[i][0].Pv)
                         {
-                            actif = pok;
-                            choix = true;
-                        }
-                        else
-                        {
-                            if (choix == false)
+                            if (choix == true && ListEquipe[i][0].Pv < actif.Pv)
                             {
-                                actif = pok;
-                                choix = true;
+                                actif = ListEquipe[i][0];
+                            }
+                            else
+                            {
+                                if (choix == false)
+                                {
+                                    actif = ListEquipe[i][0];
+                                    choix = true;
+                                }
                             }
                         }
+                        i++;
                     }
                 }
             }
-            //Sinon choix aléatoire 
+            //Si aucune des deux possibilités : choix aléatoire
             if (choix == false)
             {
-                actif = ChoisirActif();
+                ChoisirActif(out actif);
             }
-            return actif;
+            attaquant = actif;
         }
         /// <summary>
         /// Suppression d'un Pokémon KO de la liste des Pokémons de l'équipe
@@ -109,9 +132,15 @@ namespace Pokedojo
         /// <param name="pokemon"></param>
         public void SupprimerPokemonKO(Pokemon pokemon)
         {
+            int i = 0;
+            while(i<ListEquipe.Count && ListEquipe[i][0]!=pokemon)
             if(pokemon.Pv <= 0)
             {
-                ListEquipe.Remove(pokemon);
+                while(i<ListEquipe.Count && ListEquipe[i][0]!=pokemon)
+                {
+                    i++;
+                }
+                ListEquipe.Remove(ListEquipe[i]);
                 NbPokemon = NbPokemon-1;
             }
         }
@@ -119,29 +148,30 @@ namespace Pokedojo
         public virtual void BattreEnRetraite(ref Pokemon attaquant, ref Pokemon adverse)
         {
             bool changement = false;
-            //Si le l'équipe est attaquante
-            if(ListEquipe.Contains(attaquant))
+            int k = 0;
+            //Si l'équipe est attaquante
+            if(PossederPokemon(attaquant)==true)
             {
                 if(attaquant.Puissance<adverse.Pv)
                 {
-                    foreach(Pokemon pok in ListEquipe)
+                    while (k < ListEquipe.Count)
                     {
-                        if(pok.Puissance>adverse.Pv)
+                        if (adverse.Pv <= ListEquipe[k][0].Puissance)
                         {
-                            if(changement==true && pok.Puissance<attaquant.Puissance)
+                            if (changement == true && ListEquipe[k][0].Puissance < attaquant.Puissance)
                             {
-                                attaquant = pok;
-                                changement = true;
+                                attaquant = ListEquipe[k][0];
                             }
                             else
                             {
-                                if(changement==false)
+                                if (changement == false)
                                 {
-                                    attaquant = pok;
+                                    attaquant = ListEquipe[k][0];
                                     changement = true;
                                 }
                             }
                         }
+                        k++;
                     }
                 }
                 if(changement==true)
@@ -154,21 +184,25 @@ namespace Pokedojo
             {
                 if(adverse.Pv<attaquant.Puissance)
                 {
-                    foreach(Pokemon pok in ListEquipe)
+                    while(k<ListEquipe.Count)
                     {
-                        if(changement==true && pok.Pv<adverse.Pv)
+                        if(ListEquipe[k][0].Pv>attaquant.Puissance)
                         {
-                            adverse = pok;
-                            changement = true;
-                        }
-                        else
-                        {
-                            if(changement ==false)
+                            if (changement == true && ListEquipe[k][0].Pv < adverse.Pv)
                             {
-                                adverse = pok;
+                                adverse = ListEquipe[k][0];
                                 changement = true;
                             }
+                            else
+                            {
+                                if (changement == false)
+                                {
+                                    adverse = ListEquipe[k][0];
+                                    changement = true;
+                                }
+                            }
                         }
+                        k++;
                     }
                 }
                 if (changement == true)
@@ -183,10 +217,12 @@ namespace Pokedojo
             string chRes = "";
             chRes = "Equipe numéro " + Numero +"\n";
             chRes = chRes + "---------------------------------------\n";
-            foreach(Pokemon pokemon in ListEquipe)
+            int i = 0;
+            while(i<ListEquipe.Count)
             {
-                chRes = chRes + pokemon.ToString();
+                chRes = chRes + ListEquipe[i][0].ToString();
                 chRes = chRes + "---------------------------------------\n";
+                i++;
             }
             return chRes;
         }

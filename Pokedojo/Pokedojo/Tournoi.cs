@@ -20,12 +20,10 @@ namespace Pokedojo
             BddPokemon = new BaseDeDonnees();
             ListeTournoi = new List<Equipe>();
             ListeTournoi.Add(new EquipeReelle(BddPokemon)); //Ajout de l'équipe réelle au tournoi
-            Equipe equipeTournoi;
             //Ajout des 15 équipes simulées par ordinateur
             for(int i=0;i<15;i++)
             {
-                equipeTournoi = new Equipe(BddPokemon);
-                ListeTournoi.Add(equipeTournoi);
+                ListeTournoi.Add(new Equipe(BddPokemon));
             }
         }
 
