@@ -246,6 +246,18 @@ namespace Pokedojo
             Pokemon leuphorie = new Pokemon("leuphorie", 255, 10, "normal", "combat", "");
             ListeBddPokemon.Add(new List<Pokemon> { ptiravi, leveinard, leuphorie });
 
+            Pokemon mascaiman = new Pokemon("mascaiman", 50, 72, "sol", "eau", "");
+            Pokemon escroco = new Pokemon("escroco", 60, 82, "sol", "eau", "");
+            Pokemon crocorible = new Pokemon("crocorible", 95, 117, "sol", "eau", "");
+            ListeBddPokemon.Add(new List<Pokemon> { mascaiman, escroco, crocorible });
+
+
+            Pokemon marcacrin = new Pokemon("marcacrin", 50, 50, "sol", "acier", "");
+            Pokemon cochignon = new Pokemon("cochignon", 100, 100, "sol", "acier", "");
+            Pokemon mammochon = new Pokemon("mammochon", 110, 130, "sol", "acier", "");
+            ListeBddPokemon.Add(new List<Pokemon> { marcacrin, cochignon, mammochon });
+
+
             NbPokemonDispo = ListeBddPokemon.Count;
         }
         
