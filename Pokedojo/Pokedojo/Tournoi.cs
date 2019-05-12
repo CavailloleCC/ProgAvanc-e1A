@@ -13,7 +13,7 @@ namespace Pokedojo
         public Random _alea=new Random();
 
         /// <summary>
-        /// Constructeur : Créer une liste de 16 équipes composées des Pokémon issues d'une base de données de 48 Pokémons
+        /// Constructeur de la classe Tournoi : Créer une liste de 16 équipes composées des Pokémon issues d'une base de données de 48 Pokémons
         /// </summary>
         public Tournoi()
         {
@@ -23,10 +23,14 @@ namespace Pokedojo
             //Ajout des 15 équipes simulées par ordinateur
             for(int i=0;i<15;i++)
             {
-                ListeTournoi.Add(new Equipe(BddPokemon));
+                ListeTournoi.Add(new EquipeSimulee(BddPokemon));
             }
         }
 
+        /// <summary>
+        /// Simule un tournoi en 3 tours entre 16 équipes
+        /// </summary>
+        /// <returns></returns>
         public Equipe TournerJeux()
         {
             //Liste des équipes à attribuer à un combat (copie de la liste ListeTournoi)

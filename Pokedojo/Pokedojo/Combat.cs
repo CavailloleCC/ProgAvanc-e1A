@@ -15,7 +15,7 @@ namespace Pokedojo
         public int NumeroCombat { get; protected set;}
 
         /// <summary>
-        /// Constructeur
+        /// Constructeur de la classe combat
         /// </summary>
         /// <param name="equipe1"></param>
         /// <param name="equipe2"></param>
@@ -103,7 +103,8 @@ namespace Pokedojo
         }
 
         /// <summary>
-        /// Simule un combat entre deux équipes et retourne l'équipe vainqueur
+        /// Simulation d'un match entre deux équipes : succession de combat jusqu'à ce qu'une des deux équipes ait mis KO tous ses adversaires
+        /// Retourne l'équipe vainqueur
         /// </summary>
         /// <returns></returns>
         public Equipe Combattre()

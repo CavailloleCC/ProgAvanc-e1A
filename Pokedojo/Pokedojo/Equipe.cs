@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pokedojo
 {
-    class Equipe
+    abstract class Equipe
     {
         public List<List<Pokemon>> ListEquipe { get; set; }
         public int NbPokemon { get; set; }
@@ -60,81 +60,17 @@ namespace Pokedojo
         }
 
         /// <summary>
-        /// Choix aléatoire du Pokémon actif parmi les Pokémons de l'équipe en début de combat : retourne le nom du Pokémon actif
+        /// Choix du Pokémon actif en début de combat
         /// </summary>
         /// <returns></returns>
-        public virtual void ChoisirActif(out Pokemon actif)
-        {
-            int numero = _alea.Next(NbPokemon);
-            actif = ListEquipe[numero][0];
-            //Le nombre de victoire consécutives est remis à 0 lorsqu'on commence un nouveau combat
-            VictoiresConsecutives = 0;
-        }
+        public abstract void ChoisirActif(out Pokemon actif);
 
         /// <summary>
-        /// Choix d'un Pokémon de façon intelligente
+        /// Choix d'un Pokémon actif au cours du combat
         /// </summary>
         /// <param name="adverse"></param>
         /// <returns></returns>
-        public virtual void ChoisirActif(ref Pokemon attaquant, Pokemon adverse)
-        {
-            bool choix = false;
-            Pokemon actif = ListEquipe[0][0];
-            int i = 0;
-            //Choix d'un Pokémon ayant une puissance d'attaque minimale supérieure au nombre de PV de l'adversaire si possible
-            while (i < ListEquipe.Count)
-            {
-                if (adverse.Pv <= ListEquipe[i][0].Puissance)
-                {
-                    if (choix == true && ListEquipe[i][0].Puissance < actif.Puissance)
-                    {
-                        actif = ListEquipe[i][0];
-                    }
-                    else
-                    {
-                        if (choix == false)
-                        {
-                            actif = ListEquipe[i][0];
-                            choix = true;
-                        }
-                    }
-                }
-                i++;
-            }
-            i = 0;
-            //Si pas possible : choix d'un Pokémon ayant un nombre le point de vie minimal supérieur à la puissance d'attaque de l'adversaire (pour éviter qu'il nous mette KO au tour suivant)
-            if (choix == false)
-            {
-                if (attaquant.Pv <= adverse.Puissance)
-                {
-                    while (i < ListEquipe.Count)
-                    {
-                        if (adverse.Puissance < ListEquipe[i][0].Pv)
-                        {
-                            if (choix == true && ListEquipe[i][0].Pv < actif.Pv)
-                            {
-                                actif = ListEquipe[i][0];
-                            }
-                            else
-                            {
-                                if (choix == false)
-                                {
-                                    actif = ListEquipe[i][0];
-                                    choix = true;
-                                }
-                            }
-                        }
-                        i++;
-                    }
-                }
-            }
-            //Si aucune des deux possibilités : choix aléatoire
-            if (choix == false)
-            {
-                ChoisirActif(out actif);
-            }
-            attaquant = actif;
-        }
+        public abstract void ChoisirActif(ref Pokemon attaquant, Pokemon adverse);
 
         /// <summary>
         /// Suppression d'un Pokémon KO et des ses Pokémons évolués 
@@ -160,79 +96,12 @@ namespace Pokedojo
         }
 
         /// <summary>
-        /// Fait battre en retraite le Pokmon actif de l'équipe si :
-        /// -le joueur est attaquant et que sa puissance d'attaque est inférieure au nombre de PV de son adversaire mais qu'il possède un Pokémon dont la puissance est supérieur à ce nombre de PV
-        /// -le joueur est adverse et que son nombre de PV est inférieur ou égal à la puissance d'attaque de son adversaire mais qu'il possède un Pokémon dont le nombre de PV est supérieur à cette puissance 
-        /// Retourne true si le Pokémon a été mis en retraite, false sinon : Le nombre de victoires consécutives passe à 0 lorsque la fonction renvoie true
-        /// 
+        /// Fait battre en retraite le Pokmon actif 
         /// </summary>
         /// <param name="attaquant"></param>
         /// <param name="adverse"></param>
         /// <returns></returns>
-        public virtual bool BattreEnRetraite(ref Pokemon attaquant, ref Pokemon adverse)
-        {
-            bool changement = false;
-            int k = 0;
-            //Si l'équipe est attaquante
-            if(PossederPokemon(attaquant)==true)
-            {
-                if(attaquant.Puissance<adverse.Pv)
-                {
-                    while (k < ListEquipe.Count)
-                    {
-                        if (adverse.Pv <= ListEquipe[k][0].Puissance)
-                        {
-                            if (changement == true && ListEquipe[k][0].Puissance < attaquant.Puissance)
-                            {
-                                attaquant = ListEquipe[k][0];
-                            }
-                            else
-                            {
-                                if (changement == false)
-                                {
-                                    attaquant = ListEquipe[k][0];
-                                    changement = true;
-                                }
-                            }
-                        }
-                        k++;
-                    }
-                }
-            }
-            //Si l'équipe est adverse : Si son nombre de PV est inférieur à la puissance d'attaque de l'adversaire, on change 
-            else
-            {
-                if(adverse.Pv<attaquant.Puissance)
-                {
-                    while(k<ListEquipe.Count)
-                    {
-                        if(ListEquipe[k][0].Pv>attaquant.Puissance)
-                        {
-                            if (changement == true && ListEquipe[k][0].Pv < adverse.Pv)
-                            {
-                                adverse = ListEquipe[k][0];
-                                changement = true;
-                            }
-                            else
-                            {
-                                if (changement == false)
-                                {
-                                    adverse = ListEquipe[k][0];
-                                    changement = true;
-                                }
-                            }
-                        }
-                        k++;
-                    }
-                }
-            }
-            //Si on change de Pokémon, le nombre de victoires consécutives passe à 0
-            if(changement==true)
-            {
-                VictoiresConsecutives = 0;
-            }
-            return changement;
-        }
+        public abstract bool BattreEnRetraite(ref Pokemon attaquant, ref Pokemon adverse);
 
         /// <summary>
         /// Faire évoluer un Pokémon quand c'est possible (2 évolutions possibles par tournoi)
@@ -252,7 +121,10 @@ namespace Pokedojo
             }
         }
 
-
+        /// <summary>
+        /// Affichage des informations relatives à la classe Equipe
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             string chRes = "";

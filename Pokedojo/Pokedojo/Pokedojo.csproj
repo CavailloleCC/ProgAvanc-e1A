@@ -47,6 +47,7 @@
     <Compile Include="Combat.cs" />
     <Compile Include="Equipe.cs" />
     <Compile Include="EquipeReelle.cs" />
+    <Compile Include="EquipeSimulee.cs" />
     <Compile Include="Pokemon.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

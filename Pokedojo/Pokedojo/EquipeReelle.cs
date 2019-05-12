@@ -10,6 +10,10 @@ namespace Pokedojo
     {
         public string NomEquipe { get; private set; }
 
+        /// <summary>
+        /// Constructeur de la classe EquipeReelle
+        /// </summary>
+        /// <param name="bddPokemon"></param>
         public EquipeReelle(BaseDeDonnees bddPokemon)
             :base(bddPokemon)
         {
@@ -115,6 +119,10 @@ namespace Pokedojo
             return chiffre;
         }
 
+        /// <summary>
+        /// Affcihage des informations relatives à la classe EquipeReelle
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             string chRes = "";
