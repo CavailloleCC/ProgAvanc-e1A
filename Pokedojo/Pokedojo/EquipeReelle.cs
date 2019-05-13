@@ -143,6 +143,55 @@ namespace Pokedojo
         }
 
         /// <summary>
+        /// Demande à l'équipe si elle veut utiliser l'attaque spécifique de son Pokémon actif lorsque celui en possède une
+        /// Retourne true si l'équipe décide d'utiliser l'attaque spécifique, false sinon
+        /// </summary>
+        /// <param name="attaquant"></param>
+        /// <param name="adverse"></param>
+        /// <returns></returns>
+        public override bool UtiliserAttaqueSpe(Pokemon attaquant,Pokemon adverse)
+        {
+            bool chiffre = false;
+            int rep = 0;
+            if (attaquant.TypeAttaque!=null && (attaquant.TypeAttaque is Brulure && adverse.Type != "feu" || attaquant.TypeAttaque is Gel && adverse.Type != "glace"))
+            {
+                do
+                {
+                    do
+                    {
+                        Console.WriteLine("Voulez-vous utiliser l'attaque spécifique de votre Pokémon actif ?(1 pour oui, 0 pour non)");
+                        try
+                        {
+                            rep = Convert.ToInt32(Console.ReadLine());
+                            chiffre = true;
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("Vous devez rentrer un entier (0 ou 1).");
+                        }
+                    } while (chiffre == false);
+                    chiffre = false;
+                    if (rep != 0 && rep != 1)
+                    {
+                        Console.WriteLine("Attention! Repondre 1 pour oui ou 0 pour non!");
+                    }
+                } while (rep != 0 && rep != 1);
+                if (rep == 1)
+                {
+                    chiffre = true;
+                }
+            }
+            else
+            {
+                if(attaquant.TypeAttaque != null && (attaquant.TypeAttaque is Brulure && adverse.Type == "feu" || attaquant.TypeAttaque is Gel && adverse.Type == "glace"))
+                {
+                    Console.WriteLine("Vous ne pouvez pas utiliser l'attaque spécifique de votre Pokémon actif : un Pokémon de type Feu ne peut pas être brûlé");
+                }
+            }
+            return chiffre;
+        }
+
+        /// <summary>
         /// Affichage des informations relatives à la classe EquipeReelle
         /// </summary>
         /// <returns></returns>

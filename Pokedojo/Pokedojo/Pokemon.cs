@@ -10,11 +10,12 @@ namespace Pokedojo
     {
         public string Nom { get; protected set; }
         public int Pv { get; set; }
-        public int Puissance { get; protected set; }
+        public int Puissance { get; set; }
         public string Type { get; protected set; }
         public string Faiblesse { get; protected set; }
-        public string AttaqueSpe { get; protected set; }
+        public string AttaqueSpe { get; set; }
         public int PvMax { get; protected set; }
+        public AttaqueSpecifique TypeAttaque { get; set; }
 
         /// <summary>
         /// Constructeur de Pokémon avec attaque spécifique 
@@ -34,6 +35,17 @@ namespace Pokedojo
             Faiblesse = faiblesse;
             AttaqueSpe = attaqueSpe;
             PvMax = pv;
+            if(AttaqueSpe=="brulure")
+            {
+                TypeAttaque = new Brulure("brulure");
+            }
+            else
+            {
+                if(AttaqueSpe=="gel")
+                {
+                    TypeAttaque = new Gel("gel");
+                }
+            }
         }
 
         /// <summary>
@@ -46,6 +58,18 @@ namespace Pokedojo
         /// <param name="faiblesse"></param>
         public Pokemon(string nom, int pv, int puissance, string type, string faiblesse) : this(nom, pv, puissance, type, faiblesse, "")
         { }
+
+        public void AttaquerNormal(Pokemon adverse)
+        {
+            if (Type == adverse.Faiblesse)
+            {
+                adverse.Pv = adverse.Pv - (2 * Puissance);
+            }
+            else
+            {
+                adverse.Pv = adverse.Pv - Puissance;
+            }
+        }
 
         /// <summary>
         /// Affichage des caractéristiques du Pokémon 

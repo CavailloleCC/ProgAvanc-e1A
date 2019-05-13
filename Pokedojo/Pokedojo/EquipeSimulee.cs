@@ -93,7 +93,7 @@ namespace Pokedojo
         }
 
         /// <summary>
-        /// Fait battre en retraite le Pokmon actif de l'équipe si :
+        /// Fait battre en retraite le Pokémon actif de l'équipe si :
         /// -le joueur est attaquant et que sa puissance d'attaque est inférieure au nombre de PV de son adversaire mais qu'il possède un Pokémon dont la puissance est supérieur à ce nombre de PV
         /// -le joueur est adverse et que son nombre de PV est inférieur ou égal à la puissance d'attaque de son adversaire mais qu'il possède un Pokémon dont le nombre de PV est supérieur à cette puissance 
         /// Retourne true si le Pokémon a été mis en retraite, false sinon : Le nombre de victoires consécutives passe à 0 lorsque la fonction renvoie true
@@ -187,6 +187,28 @@ namespace Pokedojo
                 ListEquipe[i].Remove(ListEquipe[i][0]);
                 pokemon = ListEquipe[i][0];
             }
+        }
+
+        /// <summary>
+        /// L'équipe simulée utilise l'attaque spécifique de son Pokémon actif si il en possède une dans le cas où sa puissance
+        /// d'attaque n'est pas assez élevée pour mettre KO son adversaire et qu'il sait qu'il est susceptible de se faire tuer par
+        /// son adversaire au tour suivant (puissance d'attaque de l'adversaire supérieure au nombre de Pv du Pokémon actif de l'équipe)
+        /// Renvoie true si l'attaque est utilisée, false sinon
+        /// </summary>
+        /// <param name="attaquant"></param>
+        /// <param name="adverse"></param>
+        /// <returns></returns>
+        public override bool UtiliserAttaqueSpe(Pokemon attaquant, Pokemon adverse)
+        {
+            bool choix = false;
+            if(attaquant.AttaqueSpe != null)
+            {
+                if(attaquant.Puissance<adverse.Pv && attaquant.Pv <= adverse.Puissance)
+                {
+                    choix = true;
+                }
+            }
+            return choix;
         }
     }
 }

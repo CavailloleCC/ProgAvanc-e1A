@@ -108,20 +108,22 @@ namespace Pokedojo
         /// </summary>
         /// <param name="pokemon"></param>
         public abstract void Evoluer(ref Pokemon pokemon);
-        /*{
-            int i = 0;
-            while(i<ListEquipe.Count && ListEquipe[i][0]!=pokemon)
+
+        public abstract bool UtiliserAttaqueSpe(Pokemon attaquant,Pokemon adverse);
+
+        public void Attaquer(Pokemon attaquant, Pokemon adverse)
+        {
+            if(attaquant.TypeAttaque is AttaqueSpecifique && UtiliserAttaqueSpe(attaquant,adverse)==true)
             {
-                i++;
+                attaquant.TypeAttaque.AttaquerSpe(adverse);
+                attaquant.TypeAttaque = null;
+                attaquant.AttaqueSpe = null;
             }
-            //Si une évolution est encore possible pour le Pokémon
-            if(i<ListEquipe.Count && ListEquipe[i].Count>1)
+            else
             {
-                ListEquipe[i].Remove(ListEquipe[i][0]);
-                Console.WriteLine(pokemon.Nom + " a évolué en " + ListEquipe[i][0].Nom);
-                pokemon = ListEquipe[i][0];
+                attaquant.AttaquerNormal(adverse);
             }
-        }*/
+        }
 
         /// <summary>
         /// Affichage des informations relatives à la classe Equipe
