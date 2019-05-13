@@ -123,16 +123,23 @@ namespace Pokedojo
                 Console.WriteLine(Equipe1);
                 Console.WriteLine(Equipe2);
             }
-            //Initialisation des Pokémons
+            //Choix des Pokémons actifs pour chaque équipe des Pokémons (attribution de leur rôle de façon arbitraire pour l'instant)
             Pokemon attaquant;
             Pokemon adverse;
             Pokemon temp;
+            Equipe1.ChoisirActif(out attaquant);
+            Equipe2.ChoisirActif(out adverse);
             //Choix de l'équipe qui attaque en premier
             Equipe equipeAttaquante;
             Equipe equipeAdverse;//équipe adverse correspond à l'équipe qui n'attaque pas
             TirerPremierJoueur(out equipeAttaquante, out equipeAdverse);
-            equipeAdverse.ChoisirActif(out adverse);
-            equipeAttaquante.ChoisirActif(out attaquant);
+            //Attribution des bons rôles des Pokémons actif de chaque équipe 
+            if(Equipe1==equipeAdverse)
+            {
+                temp = adverse;
+                adverse = attaquant;
+                attaquant = temp;
+            }
             bool retraiteAdverse;
             bool retraiteAttaquant;
             while (equipeAdverse.NbPokemon != 0 && equipeAttaquante.NbPokemon != 0)

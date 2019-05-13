@@ -169,5 +169,24 @@ namespace Pokedojo
             }
             return changement;
         }
+
+        /// <summary>
+        /// Faire évoluer un Pokémon quand c'est possible (2 évolutions possibles par tournoi)
+        /// </summary>
+        /// <param name="pokemon"></param>
+        public override void Evoluer(ref Pokemon pokemon)
+        {
+            int i = 0;
+            while (i < ListEquipe.Count && ListEquipe[i][0] != pokemon)
+            {
+                i++;
+            }
+            //Si une évolution est encore possible pour le Pokémon
+            if (i < ListEquipe.Count && ListEquipe[i].Count > 1)
+            {
+                ListEquipe[i].Remove(ListEquipe[i][0]);
+                pokemon = ListEquipe[i][0];
+            }
+        }
     }
 }
