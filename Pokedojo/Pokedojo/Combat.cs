@@ -10,7 +10,7 @@ namespace Pokedojo
     {
         public Equipe Equipe1 { get; set; }
         private Equipe Equipe2 { get; set; }
-        private Random _alea = new Random();
+        private static Random _alea = new Random();
         protected static int _numeroCombat = 0;
         public int NumeroCombat { get; protected set;}
 

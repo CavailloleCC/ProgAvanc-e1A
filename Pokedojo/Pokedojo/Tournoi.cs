@@ -10,7 +10,7 @@ namespace Pokedojo
     {
         public List<Equipe> ListeTournoi { get; set; }
         public BaseDeDonnees BddPokemon { get; set; }
-        public Random _alea=new Random();
+        private static Random _alea=new Random();
 
         /// <summary>
         /// Constructeur de la classe Tournoi : Créer une liste de 16 équipes composées des Pokémon issues d'une base de données de 48 Pokémons

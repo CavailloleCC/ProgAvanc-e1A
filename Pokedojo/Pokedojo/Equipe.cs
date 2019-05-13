@@ -10,7 +10,7 @@ namespace Pokedojo
     {
         public List<List<Pokemon>> ListEquipe { get; set; }
         public int NbPokemon { get; set; }
-        public Random _alea = new Random();
+        protected static Random _alea = new Random();
         protected static int _numeroEquipe = 0;
         public BaseDeDonnees BddPokemon { get; set; }
         public int Numero { get; protected set; }
