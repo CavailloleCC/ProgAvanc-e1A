@@ -107,8 +107,8 @@ namespace Pokedojo
         /// Faire évoluer un Pokémon quand c'est possible (2 évolutions possibles par tournoi)
         /// </summary>
         /// <param name="pokemon"></param>
-        public void Evoluer(ref Pokemon pokemon)
-        {
+        public abstract void Evoluer(ref Pokemon pokemon);
+        /*{
             int i = 0;
             while(i<ListEquipe.Count && ListEquipe[i][0]!=pokemon)
             {
@@ -121,7 +121,7 @@ namespace Pokedojo
                 Console.WriteLine(pokemon.Nom + " a évolué en " + ListEquipe[i][0].Nom);
                 pokemon = ListEquipe[i][0];
             }
-        }
+        }*/
 
         /// <summary>
         /// Affichage des informations relatives à la classe Equipe
