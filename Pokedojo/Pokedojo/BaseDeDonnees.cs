@@ -112,7 +112,7 @@ namespace Pokedojo
             ListeBddPokemon.Add(new List<Pokemon> { hericendre, feurisson, typhlosion });
 
             Pokemon kaiminus = new Pokemon("kaiminus", 50, 65, "feu", "electrik", "");
-            Pokemon crocodil = new Pokemon("crocrodil", 65, 80, "feu", "electrik", "");
+            Pokemon crocodil = new Pokemon("crocodil", 65, 80, "feu", "electrik", "");
             Pokemon aligatueur = new Pokemon("aligatueur", 85, 105, "feu", "electrik", "brulure");
             ListeBddPokemon.Add(new List<Pokemon> { kaiminus, crocodil, aligatueur });
 
