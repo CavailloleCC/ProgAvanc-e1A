@@ -63,7 +63,7 @@ namespace Pokedojo
         /// <param name="equipeAdverse"></param>
         /// <param name="attaquant"></param>
         /// <param name="adverse"></param>
-        public void Attaquer(Equipe equipeAttaquante,Equipe equipeAdverse, Pokemon attaquant, Pokemon adverse)
+        public void Attaquer(Equipe equipeAttaquante,Equipe equipeAdverse,ref Pokemon attaquant, Pokemon adverse)
         {
             if (attaquant.Type == adverse.Faiblesse)
             {
@@ -86,7 +86,7 @@ namespace Pokedojo
                     equipeAttaquante.VictoiresConsecutives += 1;
                     if(equipeAttaquante.VictoiresConsecutives>1 && equipeAttaquante.VictoiresConsecutives<5)//Au bout de 4 victoires consécutives on arrive à l'évolution maximale du Pokémon
                     {
-                        equipeAttaquante.Evoluer(attaquant);
+                        equipeAttaquante.Evoluer(ref attaquant);
                     }
                 }
                 //Si ce n'est pas une victoire consécutive du Pokémon actif
@@ -137,7 +137,7 @@ namespace Pokedojo
             bool retraiteAttaquant;
             while (equipeAdverse.NbPokemon != 0 && equipeAttaquante.NbPokemon != 0)
             {
-                Attaquer(equipeAttaquante, equipeAdverse, attaquant, adverse);
+                Attaquer(equipeAttaquante, equipeAdverse, ref attaquant, adverse);
                 if(equipeAdverse.NbPokemon != 0 && equipeAttaquante.NbPokemon != 0)
                 {
                     equipeAdverse = equipeAttaquante;

@@ -120,7 +120,7 @@ namespace Pokedojo
         }
 
         /// <summary>
-        /// Affcihage des informations relatives à la classe EquipeReelle
+        /// Affichage des informations relatives à la classe EquipeReelle
         /// </summary>
         /// <returns></returns>
         public override string ToString()
