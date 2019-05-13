@@ -105,64 +105,67 @@ namespace Pokedojo
         public override bool BattreEnRetraite(ref Pokemon attaquant, ref Pokemon adverse)
         {
             bool changement = false;
-            int k = 0;
-            //Si l'équipe est attaquante
-            if (PossederPokemon(attaquant) == true)
+            if(NbPokemon>1)
             {
-                if (attaquant.Puissance < adverse.Pv)
+                int k = 0;
+                //Si l'équipe est attaquante
+                if (PossederPokemon(attaquant) == true)
                 {
-                    while (k < ListEquipe.Count)
+                    if (attaquant.Puissance < adverse.Pv)
                     {
-                        if (adverse.Pv <= ListEquipe[k][0].Puissance)
+                        while (k < ListEquipe.Count)
                         {
-                            if (changement == true && ListEquipe[k][0].Puissance < attaquant.Puissance)
+                            if (adverse.Pv <= ListEquipe[k][0].Puissance)
                             {
-                                attaquant = ListEquipe[k][0];
-                            }
-                            else
-                            {
-                                if (changement == false)
+                                if (changement == true && ListEquipe[k][0].Puissance < attaquant.Puissance)
                                 {
                                     attaquant = ListEquipe[k][0];
-                                    changement = true;
+                                }
+                                else
+                                {
+                                    if (changement == false)
+                                    {
+                                        attaquant = ListEquipe[k][0];
+                                        changement = true;
+                                    }
                                 }
                             }
+                            k++;
                         }
-                        k++;
                     }
                 }
-            }
-            //Si l'équipe est adverse : Si son nombre de PV est inférieur à la puissance d'attaque de l'adversaire, on change 
-            else
-            {
-                if (adverse.Pv < attaquant.Puissance)
+                //Si l'équipe est adverse : Si son nombre de PV est inférieur à la puissance d'attaque de l'adversaire, on change 
+                else
                 {
-                    while (k < ListEquipe.Count)
+                    if (adverse.Pv < attaquant.Puissance)
                     {
-                        if (ListEquipe[k][0].Pv > attaquant.Puissance)
+                        while (k < ListEquipe.Count)
                         {
-                            if (changement == true && ListEquipe[k][0].Pv < adverse.Pv)
+                            if (ListEquipe[k][0].Pv > attaquant.Puissance)
                             {
-                                adverse = ListEquipe[k][0];
-                                changement = true;
-                            }
-                            else
-                            {
-                                if (changement == false)
+                                if (changement == true && ListEquipe[k][0].Pv < adverse.Pv)
                                 {
                                     adverse = ListEquipe[k][0];
                                     changement = true;
                                 }
+                                else
+                                {
+                                    if (changement == false)
+                                    {
+                                        adverse = ListEquipe[k][0];
+                                        changement = true;
+                                    }
+                                }
                             }
+                            k++;
                         }
-                        k++;
                     }
                 }
-            }
-            //Si on change de Pokémon, le nombre de victoires consécutives passe à 0
-            if (changement == true)
-            {
-                VictoiresConsecutives = 0;
+                //Si on change de Pokémon, le nombre de victoires consécutives passe à 0
+                if (changement == true)
+                {
+                    VictoiresConsecutives = 0;
+                }
             }
             return changement;
         }

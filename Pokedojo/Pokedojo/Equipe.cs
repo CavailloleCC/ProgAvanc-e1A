@@ -118,7 +118,7 @@ namespace Pokedojo
             if(i<ListEquipe.Count && ListEquipe[i].Count>1)
             {
                 ListEquipe[i].Remove(ListEquipe[i][0]);
-                Console.WriteLine(pokemon.Nom + " a évolué en " + ListEquipe[i][0]);
+                Console.WriteLine(pokemon.Nom + " a évolué en " + ListEquipe[i][0].Nom);
                 pokemon = ListEquipe[i][0];
             }
         }

@@ -74,47 +74,50 @@ namespace Pokedojo
         /// <param name="adverse"></param>
         /// <returns></returns>
         public override bool BattreEnRetraite(ref Pokemon attaquant, ref Pokemon adverse)
-        {
+        {   
             bool chiffre = false;
-            int rep = 0;
-            do
+            if(NbPokemon>1)
             {
+                int rep = 0;
                 do
                 {
-                    Console.WriteLine("Voulez-vous faire battre en retraite votre Pokémon actif ?(1 pour oui, 0 pour non)");
-                    try
+                    do
                     {
-                        rep = Convert.ToInt32(Console.ReadLine());
-                        chiffre = true;
-                    }
-                    catch (FormatException)
+                        Console.WriteLine("Voulez-vous faire battre en retraite votre Pokémon actif ?(1 pour oui, 0 pour non)");
+                        try
+                        {
+                            rep = Convert.ToInt32(Console.ReadLine());
+                            chiffre = true;
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("Vous devez rentrer un entier (0 ou 1).");
+                        }
+                    } while (chiffre == false);
+                    chiffre = false;
+                    if (rep != 0 && rep != 1)
                     {
-                        Console.WriteLine("Vous devez rentrer un entier (0 ou 1).");
+                        Console.WriteLine("Attention! Repondre 1 pour oui ou 0 pour non!");
                     }
-                } while (chiffre == false);
-                chiffre = false;
-                if (rep != 0 && rep != 1)
+                } while (rep != 0 && rep != 1);
+                if (rep == 1)
                 {
-                    Console.WriteLine("Attention! Repondre 1 pour oui ou 0 pour non!");
+                    chiffre = true;
+                    //Si le joueur est attaquant 
+                    if (PossederPokemon(attaquant) == true)
+                    {
+                        ChoisirActif(out attaquant);
+                    }
+                    //Si le joueur est adverse
+                    else
+                    {
+                        ChoisirActif(out adverse);
+                    }
                 }
-            } while (rep != 0 && rep != 1);
-            if (rep == 1)
-            {
-                chiffre = true;
-                //Si le joueur est attaquant 
-                if(PossederPokemon(attaquant)==true)
+                if (chiffre == true)
                 {
-                    ChoisirActif(out attaquant);
+                    VictoiresConsecutives = 0;
                 }
-                //Si le joueur est adverse
-                else
-                {
-                    ChoisirActif(out adverse);
-                }
-            }
-            if(chiffre == true)
-            {
-                VictoiresConsecutives = 0;
             }
             return chiffre;
         }
