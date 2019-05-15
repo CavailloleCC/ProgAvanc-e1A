@@ -139,9 +139,11 @@ namespace Pokedojo
             bool retraiteAttaquant;
             //On démarre le combat entre les deux équipes
             DemarrerCombat(out attaquant, out adverse, out equipeAttaquante, out equipeAdverse);
+            //Succession de combat jusqu'à ce qu'une des deux équipes ait mis tous ces adversaires KO
             while (equipeAdverse.NbPokemon != 0 && equipeAttaquante.NbPokemon != 0)
             {
                 AttaquerEquipe(equipeAttaquante, equipeAdverse, ref attaquant, adverse);
+                //On échange les rôles des équipes et des Pokémons si le combat n'est pas terminé
                 if(equipeAdverse.NbPokemon != 0 && equipeAttaquante.NbPokemon != 0)
                 {
                     equipeAdverse = equipeAttaquante;
@@ -155,6 +157,7 @@ namespace Pokedojo
                     }
                     temp = adverse;
                     adverse = attaquant;
+                    //Si le Pokémon qui était adverse a été mis KO, choix d'un nouveau Pokémon actif par l'équipe qui devient attaquante
                     if (temp.Pv <= 0)
                     {
                         if(equipeAttaquante is EquipeReelle)
@@ -169,6 +172,7 @@ namespace Pokedojo
                         }
                         equipeAdverse.BattreEnRetraite(ref adverse, ref attaquant);
                     }
+                    //Sinon le Pokémon qui était adverse devient attaquant
                     else
                     {
                         attaquant = temp;
@@ -192,6 +196,7 @@ namespace Pokedojo
                     }
                 }
             }
+            //Déclaration de l'équipe vainqueure 
             if(Equipe1 is EquipeReelle || Equipe2 is EquipeReelle)
             {
                 if((Equipe1 is EquipeReelle && Equipe1==equipeAttaquante)||(Equipe2 is EquipeReelle && Equipe2==equipeAttaquante))
