@@ -47,11 +47,11 @@ namespace Pokedojo
             {
                 if(equipeAttaquante is EquipeReelle)
                 {
-                    Console.WriteLine("C'est à votre équipe d'attaquer en premier.");
+                    Console.WriteLine("C'est à votre équipe d'attaquer en premier.\n");
                 }
                 else
                 {
-                    Console.WriteLine("C'est à l'équipe adverse d'attaquer en premier");
+                    Console.WriteLine("C'est à l'équipe adverse d'attaquer en premier\n");
                 }
             }
         }
@@ -71,7 +71,7 @@ namespace Pokedojo
                 equipeAdverse.SupprimerPokemonKO(adverse);
                 if (equipeAdverse is EquipeReelle || equipeAttaquante is EquipeReelle)
                 {
-                    Console.WriteLine(adverse.Nom+" a été mis KO par "+attaquant.Nom);
+                    Console.WriteLine(adverse.Nom+" a été mis KO par "+attaquant.Nom+"\n");
                 }
                 equipeAttaquante.GererVictoires(attaquant);
             }
