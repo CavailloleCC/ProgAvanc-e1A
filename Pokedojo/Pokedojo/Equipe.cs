@@ -109,6 +109,28 @@ namespace Pokedojo
         /// <param name="pokemon"></param>
         public abstract void Evoluer(ref Pokemon pokemon);
 
+        /// <summary>
+        /// Gère l'état de VictoiresConsecutives et les évolutions du Pokémon en cas de victoire de celui-ci
+        /// </summary>
+        /// <param name="attaquant"></param>
+        public void GererVictoires(Pokemon attaquant)
+        {
+            //Si l'équipe attaquante a déjà fait une victoire au combat précédent et qu'elle n'a pas changé de Pokémon entre temps
+            if (VictoiresConsecutives > 0)
+            {
+                VictoiresConsecutives += 1;
+                if (VictoiresConsecutives > 1 && VictoiresConsecutives < 4)//Au bout de  3 victoires consécutives on arrive à l'évolution maximale du Pokémon
+                {
+                    Evoluer(ref attaquant);
+                }
+            }
+            //Si ce c'est la première victoire consécutive du Pokémon actif
+            else
+            {
+                VictoiresConsecutives += 1;
+            }
+        }
+
         public abstract bool UtiliserAttaqueSpe(Pokemon attaquant,Pokemon adverse);
 
         public void Attaquer(Pokemon attaquant, Pokemon adverse)

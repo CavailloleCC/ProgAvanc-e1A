@@ -73,20 +73,7 @@ namespace Pokedojo
                 {
                     Console.WriteLine(adverse.Nom+" a été mis KO par "+attaquant.Nom);
                 }
-                //Si l'équipe attaquante a déjà fait une victoire au combat précédent et qu'elle n'a pas changé de Pokémon entre temps
-                if(equipeAttaquante.VictoiresConsecutives>0)
-                {
-                    equipeAttaquante.VictoiresConsecutives += 1;
-                    if(equipeAttaquante.VictoiresConsecutives>1 && equipeAttaquante.VictoiresConsecutives<5)//Au bout de 4 victoires consécutives on arrive à l'évolution maximale du Pokémon
-                    {
-                        equipeAttaquante.Evoluer(ref attaquant);
-                    }
-                }
-                //Si ce c'est la première victoire consécutive du Pokémon actif
-                else
-                {
-                    equipeAttaquante.VictoiresConsecutives += 1;
-                }
+                equipeAttaquante.GererVictoires(attaquant);
             }
             //Si le Pokémon ne fait pas de KO, on met le nombre de victoire consécutives à 0
             else

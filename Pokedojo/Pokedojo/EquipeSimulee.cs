@@ -28,6 +28,72 @@ namespace Pokedojo
         }
 
         /// <summary>
+        /// Cherche le Pokémon ayant la puissance d'attaque minimale supérieure au nombre de Pv de son adversaire
+        /// Renvoie true et remplace attaquant par le Pokémon trouvé s'il en existe un, renvoie false sinon
+        /// </summary>
+        /// <param name="attaquant"></param>
+        /// <param name="adverse"></param>
+        /// <returns></returns>
+        public bool MettreKO(ref Pokemon attaquant, Pokemon adverse)
+        {
+            int i = 0;
+            bool choix = false;
+            while (i < ListEquipe.Count)
+            {
+                if (adverse.Pv <= ListEquipe[i][0].Puissance)
+                {
+                    if (choix == true && ListEquipe[i][0].Puissance < attaquant.Puissance)
+                    {
+                        attaquant = ListEquipe[i][0];
+                    }
+                    else
+                    {
+                        if (choix == false)
+                        {
+                            attaquant = ListEquipe[i][0];
+                            choix = true;
+                        }
+                    }
+                }
+                i++;
+            }
+            return choix;
+        }
+
+        /// <summary>
+        /// Cherche le Pokémon ayant le nombre de point de vie minimal supérieur à la puissance d'attaque de son adversaire 
+        /// Renvoie true et remplace adverse par le Pokémon trouvé s'il en existe un, renvoie false sinon
+        /// </summary>
+        /// <param name="attaquant"></param>
+        /// <param name="adverse"></param>
+        /// <returns></returns>
+        public bool EviterKO(Pokemon attaquant, ref Pokemon adverse)
+        {
+            int i = 0;
+            bool choix = false;
+            while (i < ListEquipe.Count)
+            {
+                if (attaquant.Puissance < ListEquipe[i][0].Pv)
+                {
+                    if (choix == true && ListEquipe[i][0].Pv < adverse.Pv)
+                    {
+                        adverse = ListEquipe[i][0];
+                    }
+                    else
+                    {
+                        if (choix == false)
+                        {
+                            adverse = ListEquipe[i][0];
+                            choix = true;
+                        }
+                    }
+                }
+                i++;
+            }
+            return choix;
+        }
+
+        /// <summary>
         /// Choix d'un Pokémon de façon intelligente
         /// </summary>
         /// <param name="adverse"></param>
@@ -35,61 +101,19 @@ namespace Pokedojo
         public override void ChoisirActif(ref Pokemon attaquant, Pokemon adverse)
         {
             bool choix = false;
-            Pokemon actif = ListEquipe[0][0];
-            int i = 0;
-            //Choix d'un Pokémon ayant une puissance d'attaque minimale supérieure au nombre de PV de l'adversaire si possible
-            while (i < ListEquipe.Count)
-            {
-                if (adverse.Pv <= ListEquipe[i][0].Puissance)
-                {
-                    if (choix == true && ListEquipe[i][0].Puissance < actif.Puissance)
-                    {
-                        actif = ListEquipe[i][0];
-                    }
-                    else
-                    {
-                        if (choix == false)
-                        {
-                            actif = ListEquipe[i][0];
-                            choix = true;
-                        }
-                    }
-                }
-                i++;
-            }
-            i = 0;
-            //Si pas possible : choix d'un Pokémon ayant un nombre le point de vie minimal supérieur à la puissance d'attaque de l'adversaire (pour éviter qu'il nous mette KO au tour suivant)
+            //Pokemon actif = ListEquipe[0][0];
+            //Choix d'un Pokémon ayant la puissance d'attaque minimale supérieure au nombre de PV de l'adversaire si possible
+            choix = MettreKO(ref attaquant, adverse);
+            //Si pas possible : choix d'un Pokémon ayant un nombre le point de vie minimal supérieur à la puissance d'attaque de l'adversaire (pour éviter qu'il nous mette KO au tour suivant, cad lorsqu'il sera adverse)
             if (choix == false)
             {
-                if (attaquant.Pv <= adverse.Puissance)
-                {
-                    while (i < ListEquipe.Count)
-                    {
-                        if (adverse.Puissance < ListEquipe[i][0].Pv)
-                        {
-                            if (choix == true && ListEquipe[i][0].Pv < actif.Pv)
-                            {
-                                actif = ListEquipe[i][0];
-                            }
-                            else
-                            {
-                                if (choix == false)
-                                {
-                                    actif = ListEquipe[i][0];
-                                    choix = true;
-                                }
-                            }
-                        }
-                        i++;
-                    }
-                }
+                choix = EviterKO(adverse, ref attaquant);
             }
             //Si aucune des deux possibilités : choix aléatoire
             if (choix == false)
             {
-                ChoisirActif(out actif);
+                ChoisirActif(out attaquant);
             }
-            attaquant = actif;
         }
 
         /// <summary>
@@ -107,31 +131,14 @@ namespace Pokedojo
             bool changement = false;
             if(NbPokemon>1)
             {
-                int k = 0;
-                //Si l'équipe est attaquante
+                //Si l'équipe est attaquante 
                 if (PossederPokemon(attaquant) == true)
                 {
+                    //Si sa puissance d'attaque est inférieure au nombre de Pv de l'adversaire
                     if (attaquant.Puissance < adverse.Pv)
                     {
-                        while (k < ListEquipe.Count)
-                        {
-                            if (adverse.Pv <= ListEquipe[k][0].Puissance)
-                            {
-                                if (changement == true && ListEquipe[k][0].Puissance < attaquant.Puissance)
-                                {
-                                    attaquant = ListEquipe[k][0];
-                                }
-                                else
-                                {
-                                    if (changement == false)
-                                    {
-                                        attaquant = ListEquipe[k][0];
-                                        changement = true;
-                                    }
-                                }
-                            }
-                            k++;
-                        }
+                        //On cherche le Pokémon ayant la plus petite puissance d'attaque permettant de mettre KO son adversaire
+                        changement = MettreKO(ref attaquant, adverse);
                     }
                 }
                 //Si l'équipe est adverse : Si son nombre de PV est inférieur à la puissance d'attaque de l'adversaire, on change 
@@ -139,26 +146,7 @@ namespace Pokedojo
                 {
                     if (adverse.Pv < attaquant.Puissance)
                     {
-                        while (k < ListEquipe.Count)
-                        {
-                            if (ListEquipe[k][0].Pv > attaquant.Puissance)
-                            {
-                                if (changement == true && ListEquipe[k][0].Pv < adverse.Pv)
-                                {
-                                    adverse = ListEquipe[k][0];
-                                    changement = true;
-                                }
-                                else
-                                {
-                                    if (changement == false)
-                                    {
-                                        adverse = ListEquipe[k][0];
-                                        changement = true;
-                                    }
-                                }
-                            }
-                            k++;
-                        }
+                        changement = EviterKO(attaquant, ref adverse);
                     }
                 }
                 //Si on change de Pokémon, le nombre de victoires consécutives passe à 0

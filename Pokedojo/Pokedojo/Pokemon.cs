@@ -59,6 +59,12 @@ namespace Pokedojo
         public Pokemon(string nom, int pv, int puissance, string type, string faiblesse) : this(nom, pv, puissance, type, faiblesse, "")
         { }
 
+        /// <summary>
+        /// Attaque habituelle d'un Pokémon :
+        /// -Dans le cas général, la puissance d'attaque est soustrait au nombre de Pv du Pokémon adverse
+        /// -Si la faiblesse du Pokémon adverse est égale au type du Pokémon attquant, c'est deux fois la puissance t'attaque qui est soustrait au nombre de Pv de l'adverse
+        /// </summary>
+        /// <param name="adverse"></param>
         public void AttaquerNormal(Pokemon adverse)
         {
             if (Type == adverse.Faiblesse)

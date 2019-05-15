@@ -28,13 +28,68 @@ namespace Pokedojo
         }
 
         /// <summary>
+        /// Affichage du tableau des résultats des combats d'un tour 
+        /// </summary>
+        /// <param name="resultatsTour"></param>
+        public void AfficherResultats(List<List<Equipe>> resultatsTour)
+        {
+            int num;
+            for (int i = 0; i < resultatsTour.Count; i++)
+            {
+                num = i + 1;
+                if (resultatsTour[i][0].Numero < 10 && resultatsTour[i][1].Numero < 10 && resultatsTour[i][2].Numero < 10)
+                {
+                    Console.WriteLine(" ----------------------------------------------------------");
+                    Console.WriteLine("| Combat " + num + " | Equipe " + resultatsTour[i][0].Numero + "  / Equipe " + resultatsTour[i][1].Numero + "  | Vainqueur : Equipe " + resultatsTour[i][2].Numero + "  |");
+                }
+                else
+                {
+                    if (resultatsTour[i][0].Numero < 10 && resultatsTour[i][1].Numero >= 10 && resultatsTour[i][2].Numero < 10 || resultatsTour[i][0].Numero >= 10 && resultatsTour[i][1].Numero < 10 && resultatsTour[i][2].Numero < 10)
+                    {
+                        if (resultatsTour[i][0].Numero < 10)
+                        {
+                            Console.WriteLine(" ----------------------------------------------------------");
+                            Console.WriteLine("| Combat " + num + " | Equipe " + resultatsTour[i][0].Numero + "  / Equipe " + resultatsTour[i][1].Numero + " | Vainqueur : Equipe " + resultatsTour[i][2].Numero + "  |");
+                        }
+                        else
+                        {
+                            Console.WriteLine(" ----------------------------------------------------------");
+                            Console.WriteLine("| Combat " + num + " | Equipe " + resultatsTour[i][0].Numero + " / Equipe " + resultatsTour[i][1].Numero + "  | Vainqueur : Equipe " + resultatsTour[i][2].Numero + "  |");
+                        }
+                    }
+                    else
+                    {
+                        if (resultatsTour[i][0].Numero < 10 && resultatsTour[i][1].Numero >= 10 && resultatsTour[i][2].Numero >= 10 || resultatsTour[i][0].Numero >= 10 && resultatsTour[i][1].Numero < 10 && resultatsTour[i][2].Numero >= 10)
+                        {
+                            if (resultatsTour[i][0].Numero < 10)
+                            {
+                                Console.WriteLine(" ----------------------------------------------------------");
+                                Console.WriteLine("| Combat " + num + " | Equipe " + resultatsTour[i][0].Numero + "  / Equipe " + resultatsTour[i][1].Numero + " | Vainqueur : Equipe " + resultatsTour[i][2].Numero + " |");
+                            }
+                            else
+                            {
+                                Console.WriteLine(" ----------------------------------------------------------");
+                                Console.WriteLine("| Combat " + num + " | Equipe " + resultatsTour[i][0].Numero + " / Equipe " + resultatsTour[i][1].Numero + "  | Vainqueur : Equipe " + resultatsTour[i][2].Numero + " |");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine(" ----------------------------------------------------------");
+                            Console.WriteLine("| Combat " + num + " | Equipe " + resultatsTour[i][0].Numero + " / Equipe " + resultatsTour[i][1].Numero + " | Vainqueur : Equipe " + resultatsTour[i][2].Numero + " |");
+                        }
+                    }
+                }
+            }
+            Console.WriteLine(" ----------------------------------------------------------\n");
+        }
+
+        /// <summary>
         /// Simule un tournoi en 3 tours entre 16 équipes
         /// </summary>
         /// <returns></returns>
         public Equipe TournerJeux()
         {
             //Liste des équipes à attribuer à un combat (copie de la liste ListeTournoi)
-            int num;
             List<Equipe> equipeDispo = new List<Equipe>();
             for(int i=0;i<ListeTournoi.Count;i++)
             {
@@ -74,53 +129,7 @@ namespace Pokedojo
                     equipeDispo.Add(ListeTournoi[i]);
                 }
                 //Affichage du tableau des résultats des combats pour chaque tour
-                for(int i=0; i<resultatsTour.Count;i++)
-                {
-                    num = i + 1;
-                    if(resultatsTour[i][0].Numero<10 && resultatsTour[i][1].Numero<10 && resultatsTour[i][2].Numero < 10)
-                    {
-                        Console.WriteLine(" ----------------------------------------------------------");
-                        Console.WriteLine("| Combat " + num + " | Equipe " + resultatsTour[i][0].Numero + "  / Equipe " + resultatsTour[i][1].Numero + "  | Vainqueur : Equipe " + resultatsTour[i][2].Numero + "  |");
-                    }
-                    else
-                    {
-                        if (resultatsTour[i][0].Numero < 10 && resultatsTour[i][1].Numero >= 10 && resultatsTour[i][2].Numero < 10 || resultatsTour[i][0].Numero >= 10 && resultatsTour[i][1].Numero < 10 && resultatsTour[i][2].Numero < 10)
-                        {
-                            if(resultatsTour[i][0].Numero<10)
-                            {
-                                Console.WriteLine(" ----------------------------------------------------------");
-                                Console.WriteLine("| Combat " + num + " | Equipe " + resultatsTour[i][0].Numero + "  / Equipe " + resultatsTour[i][1].Numero + " | Vainqueur : Equipe " + resultatsTour[i][2].Numero + "  |");
-                            }
-                            else
-                            {
-                                Console.WriteLine(" ----------------------------------------------------------");
-                                Console.WriteLine("| Combat " + num + " | Equipe " + resultatsTour[i][0].Numero + " / Equipe " + resultatsTour[i][1].Numero + "  | Vainqueur : Equipe " + resultatsTour[i][2].Numero + "  |");
-                            }
-                        }
-                        else
-                        {
-                            if (resultatsTour[i][0].Numero < 10 && resultatsTour[i][1].Numero >= 10 && resultatsTour[i][2].Numero >= 10 || resultatsTour[i][0].Numero >= 10 && resultatsTour[i][1].Numero < 10 && resultatsTour[i][2].Numero >= 10)
-                            {
-                                if(resultatsTour[i][0].Numero<10)
-                                {
-                                    Console.WriteLine(" ----------------------------------------------------------");
-                                    Console.WriteLine("| Combat " + num + " | Equipe " + resultatsTour[i][0].Numero + "  / Equipe " + resultatsTour[i][1].Numero + " | Vainqueur : Equipe " + resultatsTour[i][2].Numero + " |");
-                                }
-                                else
-                                {
-                                    Console.WriteLine(" ----------------------------------------------------------");
-                                    Console.WriteLine("| Combat " + num + " | Equipe " + resultatsTour[i][0].Numero + " / Equipe " + resultatsTour[i][1].Numero + "  | Vainqueur : Equipe " + resultatsTour[i][2].Numero + " |");
-                                }
-                            }
-                            else
-                            {
-                                Console.WriteLine(" ----------------------------------------------------------");
-                                Console.WriteLine("| Combat " + num + " | Equipe " + resultatsTour[i][0].Numero + " / Equipe " + resultatsTour[i][1].Numero + " | Vainqueur : Equipe " + resultatsTour[i][2].Numero + " |");
-                            }
-                        }
-                    }
-                }
-                Console.WriteLine(" ----------------------------------------------------------\n");
+                AfficherResultats(resultatsTour);
                 resultatsTour.Clear(); //Tour terminé : on vide la liste des résultats du tour 
 
             }

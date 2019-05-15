@@ -18,6 +18,7 @@ namespace Pokedojo
         /// <summary>
         /// Attaque spécifique Gel :
         /// -Le Pokémon adverse ne peut plus attaquer : sa puissance d'attaque vaut 0
+        /// -Un Pokémon de type glace ne peut pas être gelé
         /// </summary>
         /// <param name="adverse"></param>
         public override void AttaquerSpe(Pokemon adverse)
