@@ -83,18 +83,23 @@ namespace Pokedojo
         }
 
         /// <summary>
-        /// Simulation d'un match entre deux équipes : succession de combat jusqu'à ce qu'une des deux équipes ait mis KO tous ses adversaires
-        /// Retourne l'équipe vainqueur
+        /// Démarrer le combat entre les deux équipes :
+        /// Choix des Pokémons actifs, choix de l'équipe attaquant en premier, 
+        /// attribution des rôles à chaque équipe (équipe attaquante ou adverse), attribution des rôles à chaque Pokémon actif (attaquant ou adverse)
         /// </summary>
-        /// <returns></returns>
-        public Equipe Combattre()
+        /// <param name="attaquant"></param>
+        /// <param name="adverse"></param>
+        /// <param name="equipeAttaquante"></param>
+        /// <param name="equipeAdverse"></param>
+        public void DemarrerCombat(out Pokemon attaquant, out Pokemon adverse, out Equipe equipeAttaquante, out Equipe equipeAdverse)
         {
+            Pokemon temp;
             //Affichage des caractéristiques des 2 équipes si l'équipe réelle fait partie du combat
             if (Equipe1 is EquipeReelle || Equipe2 is EquipeReelle)
             {
-                if(Equipe1 is EquipeReelle)
+                if (Equipe1 is EquipeReelle)
                 {
-                    Console.WriteLine("Vous combattez contre l'équipe " + Equipe2.Numero+"\n");
+                    Console.WriteLine("Vous combattez contre l'équipe " + Equipe2.Numero + "\n");
                 }
                 else
                 {
@@ -104,24 +109,36 @@ namespace Pokedojo
                 Console.WriteLine(Equipe2);
             }
             //Choix des Pokémons actifs pour chaque équipe des Pokémons (attribution de leur rôle de façon arbitraire pour l'instant)
-            Pokemon attaquant;
-            Pokemon adverse;
-            Pokemon temp;
             Equipe1.ChoisirActif(out attaquant);
             Equipe2.ChoisirActif(out adverse);
             //Choix de l'équipe qui attaque en premier
-            Equipe equipeAttaquante;
-            Equipe equipeAdverse;//équipe adverse correspond à l'équipe qui n'attaque pas
             TirerPremierJoueur(out equipeAttaquante, out equipeAdverse);
             //Attribution des bons rôles des Pokémons actif de chaque équipe 
-            if(Equipe1==equipeAdverse)
+            if (Equipe1 == equipeAdverse)
             {
                 temp = adverse;
                 adverse = attaquant;
                 attaquant = temp;
             }
+        }
+
+        /// <summary>
+        /// Simulation d'un match entre deux équipes : succession de combat jusqu'à ce qu'une des deux équipes ait mis KO tous ses adversaires
+        /// Retourne l'équipe vainqueur
+        /// </summary>
+        /// <returns></returns>
+        public Equipe Combattre()
+        {
+            //Initialisation des variables
+            Pokemon attaquant;
+            Pokemon adverse;
+            Pokemon temp;
+            Equipe equipeAttaquante;
+            Equipe equipeAdverse;//équipe adverse correspond à l'équipe qui n'attaque pas
             bool retraiteAdverse;
             bool retraiteAttaquant;
+            //On démarre le combat entre les deux équipes
+            DemarrerCombat(out attaquant, out adverse, out equipeAttaquante, out equipeAdverse);
             while (equipeAdverse.NbPokemon != 0 && equipeAttaquante.NbPokemon != 0)
             {
                 AttaquerEquipe(equipeAttaquante, equipeAdverse, ref attaquant, adverse);
