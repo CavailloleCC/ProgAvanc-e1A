@@ -9,7 +9,6 @@ namespace Pokedojo
     class Tournoi
     {
         public List<Equipe> ListeTournoi { get; set; }
-        public BaseDeDonnees BddPokemon { get; set; }
         private static Random _alea=new Random();
 
         /// <summary>
@@ -17,13 +16,12 @@ namespace Pokedojo
         /// </summary>
         public Tournoi()
         {
-            BddPokemon = new BaseDeDonnees();
             ListeTournoi = new List<Equipe>();
-            ListeTournoi.Add(new EquipeReelle(BddPokemon)); //Ajout de l'équipe réelle au tournoi
+            ListeTournoi.Add(new EquipeReelle()); //Ajout de l'équipe réelle au tournoi
             //Ajout des 15 équipes simulées par ordinateur
             for(int i=0;i<15;i++)
             {
-                ListeTournoi.Add(new EquipeSimulee(BddPokemon));
+                ListeTournoi.Add(new EquipeSimulee());
             }
         }
 

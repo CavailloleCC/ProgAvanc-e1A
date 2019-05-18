@@ -12,7 +12,7 @@ namespace Pokedojo
         /// Constructeur de la classe EquipeSimulee
         /// </summary>
         /// <param name="bddPokemon"></param>
-        public EquipeSimulee(BaseDeDonnees bddPokemon):base(bddPokemon)
+        public EquipeSimulee():base()
         { }
 
         /// <summary>
