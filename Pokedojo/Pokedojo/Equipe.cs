@@ -113,7 +113,7 @@ namespace Pokedojo
         /// Gère l'état de VictoiresConsecutives et les évolutions du Pokémon en cas de victoire de celui-ci
         /// </summary>
         /// <param name="attaquant"></param>
-        public void GererVictoires(Pokemon attaquant)
+        public void GererVictoires(ref Pokemon attaquant)
         {
             //Si l'équipe attaquante a déjà fait une victoire au combat précédent et qu'elle n'a pas changé de Pokémon entre temps
             if (VictoiresConsecutives > 0)

@@ -73,7 +73,7 @@ namespace Pokedojo
                 {
                     Console.WriteLine(adverse.Nom+" a été mis KO par "+attaquant.Nom+"\n");
                 }
-                equipeAttaquante.GererVictoires(attaquant);
+                equipeAttaquante.GererVictoires(ref attaquant);
             }
             //Si le Pokémon ne fait pas de KO, on met le nombre de victoire consécutives à 0
             else
