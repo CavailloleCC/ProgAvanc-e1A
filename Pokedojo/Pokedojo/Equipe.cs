@@ -133,14 +133,25 @@ namespace Pokedojo
 
         public abstract bool UtiliserAttaqueSpe(Pokemon attaquant,Pokemon adverse);
 
+        /// <summary>
+        /// Attaque du Pokémon adverse par la Pokémon attaquant de l'équipe :
+        /// -Attaque spécifique si l'équipe à décider d'utiliser l'attaque spécifique de son Pokémon
+        ///  Lorsqu'une attaque spécifique est utilisée, elle est mise à null pour le Pokémon auquel elle appartient
+        /// -Attaque normale sinon
+        /// </summary>
+        /// <param name="attaquant"></param>
+        /// <param name="adverse"></param>
         public void Attaquer(Pokemon attaquant, Pokemon adverse)
         {
+            //Si une attaque spécifique est utilisée 
             if(attaquant.TypeAttaque is AttaqueSpecifique && UtiliserAttaqueSpe(attaquant,adverse)==true)
             {
                 attaquant.TypeAttaque.AttaquerSpe(adverse);
+                //On supprime retire l'attaque spécifique du Pokémon, il ne pourra plus l'utiliser au cours du tournoi
                 attaquant.TypeAttaque = null;
                 attaquant.AttaqueSpe = null;
             }
+            //Si c'est une attaque normale
             else
             {
                 attaquant.AttaquerNormal(adverse);

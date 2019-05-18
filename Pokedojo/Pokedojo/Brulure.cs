@@ -17,7 +17,7 @@ namespace Pokedojo
 
         /// <summary>
         /// Attaque spécifique Brulure : 
-        /// -Réduit l'attaque adverse de moitié
+        /// -Réduit l'attaque adverse de moitié 
         /// -Le Pokémon adverse perd 1/6 de ses PvMax
         /// -Un Pokémon de type "feu" ne peut pas être brûlé
         /// </summary>
