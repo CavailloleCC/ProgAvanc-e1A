@@ -53,7 +53,7 @@ namespace Pokedojo
 
             Pokemon nidoranm = new Pokemon("nidoranm", 46, 57, "poison", "sol", "brulure");
             Pokemon nidorino = new Pokemon("nidorino", 61, 72, "poison", "sol", "brulure");
-            Pokemon nidoking = new Pokemon("nidorino", 81, 102, "poison", "sol", "brulure");
+            Pokemon nidoking = new Pokemon("nidoking", 81, 102, "poison", "sol", "brulure");
             ListeBddPokemon.Add(new List<Pokemon> { nidoranm, nidorino, nidoking });
 
             Pokemon melo = new Pokemon("melo", 50, 25, "fee", "acier", "gel");
@@ -102,13 +102,13 @@ namespace Pokedojo
             ListeBddPokemon.Add(new List<Pokemon> { hypotrempe, hypocean, hyporoi });
 
             Pokemon porygon = new Pokemon("porygon", 65, 60, "normal", "combat");
-            Pokemon porygon2 = new Pokemon("porygon", 85, 80, "normal", "combat");
-            Pokemon porygonZ = new Pokemon("porygon", 85, 85, "normal", "combat");
+            Pokemon porygon2 = new Pokemon("porygon2", 85, 80, "normal", "combat");
+            Pokemon porygonZ = new Pokemon("porygonZ", 85, 85, "normal", "combat");
             ListeBddPokemon.Add(new List<Pokemon> { porygon, porygon2, porygonZ });
 
             Pokemon hericendre = new Pokemon("hericendre", 39, 52, "feu", "sol");
-            Pokemon feurisson = new Pokemon("hericendre", 58, 64, "feu", "sol", "brulure");
-            Pokemon typhlosion = new Pokemon("hericendre", 78, 84, "feu", "sol", "brulure");
+            Pokemon feurisson = new Pokemon("feurisson", 58, 64, "feu", "sol", "brulure");
+            Pokemon typhlosion = new Pokemon("typhlosion", 78, 84, "feu", "sol", "brulure");
             ListeBddPokemon.Add(new List<Pokemon> { hericendre, feurisson, typhlosion });
 
             Pokemon kaiminus = new Pokemon("kaiminus", 50, 65, "feu", "electrik");
