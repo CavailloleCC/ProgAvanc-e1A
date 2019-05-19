@@ -14,8 +14,8 @@ namespace Pokedojo
         /// Constructeur de la classe EquipeReelle
         /// </summary>
         /// <param name="bddPokemon"></param>
-        public EquipeReelle()
-            :base()
+        public EquipeReelle(BaseDeDonnees bddPokemon)
+            :base(bddPokemon)
         {
             Console.WriteLine("Veuillez saisir un nom d'équipe : ");
             string nomEquipe = Convert.ToString(Console.ReadLine());

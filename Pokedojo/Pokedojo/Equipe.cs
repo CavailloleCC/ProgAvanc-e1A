@@ -20,9 +20,9 @@ namespace Pokedojo
         /// Constructeur de la classe Equipe
         /// </summary>
         /// <param name="bddPokemon"></param>
-        public Equipe()
+        public Equipe(BaseDeDonnees bddPokemon)
         {
-            BddPokemon = new BaseDeDonnees();
+            BddPokemon = bddPokemon;
             NbPokemon = 3;
             Numero = ++_numeroEquipe;
             VictoiresConsecutives = 0;
