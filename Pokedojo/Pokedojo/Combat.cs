@@ -170,7 +170,11 @@ namespace Pokedojo
                         {
                             Console.WriteLine("Le Pokémon attaquant est à présent " + attaquant.Nom + "\n" + adverse.Nom + " devient adverse\n");
                         }
-                        equipeAdverse.BattreEnRetraite(ref adverse, ref attaquant);
+                        retraiteAdverse = equipeAdverse.BattreEnRetraite(ref adverse, ref attaquant);
+                        if(equipeAttaquante is EquipeReelle && retraiteAdverse==true)
+                        {
+                            Console.WriteLine("Votre adversaire a fait battre en retraite son pokémon, son nouveau pokémon actif est " + adverse.Nom);
+                        }
                     }
                     //Sinon le Pokémon qui était adverse devient attaquant
                     else
