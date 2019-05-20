@@ -27,7 +27,7 @@ namespace Pokedojo
         }
 
         /// <summary>
-        /// Choix aléatoire de l'équipe jouant en premier : Attribue l'équipe qui attaque en premier à equipeAttaquante et l'autre équipe à equipeAdverse
+        /// Choix aléatoire de l'équipe qui joue en premier : cette dernière devient equipeAttaquante et l'autre équipe devient equipeAdverse
         /// </summary>
         /// <returns></returns>
         public void TirerPremierJoueur(out Equipe equipeAttaquante, out Equipe equipeAdverse)
@@ -84,8 +84,8 @@ namespace Pokedojo
 
         /// <summary>
         /// Démarrer le combat entre les deux équipes :
-        /// Choix des Pokémons actifs, choix de l'équipe attaquant en premier, 
-        /// attribution des rôles à chaque équipe (équipe attaquante ou adverse), attribution des rôles à chaque Pokémon actif (attaquant ou adverse)
+        /// Choix des Pokémons actifs, choix de l'équipe qui attaque en premier, 
+        /// attribution des rôles de chaque équipe (équipe attaquante ou adverse), attribution des rôles de chaque Pokémon (attaquant ou adverse)
         /// </summary>
         /// <param name="attaquant"></param>
         /// <param name="adverse"></param>
@@ -108,7 +108,7 @@ namespace Pokedojo
                 Console.WriteLine(Equipe1);
                 Console.WriteLine(Equipe2);
             }
-            //Choix des Pokémons actifs pour chaque équipe des Pokémons (attribution de leur rôle de façon arbitraire pour l'instant)
+            //Choix des Pokémons actifs pour chaque équipe (attribution de leur rôle de façon arbitraire pour l'instant)
             Equipe1.ChoisirActif(out attaquant);
             Equipe2.ChoisirActif(out adverse);
             //Choix de l'équipe qui attaque en premier
@@ -123,7 +123,7 @@ namespace Pokedojo
         }
 
         /// <summary>
-        /// Simulation d'un match entre deux équipes : succession de combat jusqu'à ce qu'une des deux équipes ait mis KO tous ses adversaires
+        /// Simulation d'un match entre deux équipes : succession de combat jusqu'à ce qu'une des deux équipes ait mis KO tous les Pokémons adverses
         /// Retourne l'équipe vainqueur
         /// </summary>
         /// <returns></returns>
@@ -143,7 +143,7 @@ namespace Pokedojo
             while (equipeAdverse.NbPokemon != 0 && equipeAttaquante.NbPokemon != 0)
             {
                 AttaquerEquipe(equipeAttaquante, equipeAdverse, ref attaquant, adverse);
-                //On échange les rôles des équipes et des Pokémons si le combat n'est pas terminé
+                //On échange les rôles des équipes et des Pokémons si le combat n'est pas terminé (attaquant devient adverse et inversement)
                 if(equipeAdverse.NbPokemon != 0 && equipeAttaquante.NbPokemon != 0)
                 {
                     equipeAdverse = equipeAttaquante;
