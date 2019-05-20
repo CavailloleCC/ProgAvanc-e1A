@@ -20,7 +20,7 @@ namespace Pokedojo
         }
 
         /// <summary>
-        /// Attaque spécifique à définir en fonction du l'attaque spécifique du Pokémon
+        /// Attaque spécifique à définir en fonction de l'attaque spécifique du Pokémon
         /// </summary>
         /// <param name="adverse"></param>
         /// <returns></returns>
