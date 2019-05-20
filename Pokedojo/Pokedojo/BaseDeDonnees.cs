@@ -12,6 +12,11 @@ namespace Pokedojo
 
         public int NbPokemonDispo { get; set; }
 
+        /// <summary>
+        /// Constructeur de la classe BaseDeDonnees :
+        /// Construction d'une liste de liste de Pokémons, constituée de 48 Pokémons (et de leur 2 évolutions)
+        /// NbPokemonDispo est donc initialisé à 48 (longueur de la liste)
+        /// </summary>
         public BaseDeDonnees()
         {
             ListeBddPokemon = new List<List<Pokemon>>();
@@ -263,7 +268,8 @@ namespace Pokedojo
         
 
         /// <summary>
-        /// Supprimer le Pokémon (et ses Pokémons évolués) de la liste lorsqu'il a été attribué à une équipe 
+        /// Suppression d'un Pokémon (et de ses évolutions) de la liste de la base de données :
+        /// Sera utilisé pour supprimer un Pokémon une fois celui-ci attribué à une équipe
         /// </summary>
         /// <param name="pokemon"></param>
         public void SupprimerPokemon(List<Pokemon> ListePokemon)

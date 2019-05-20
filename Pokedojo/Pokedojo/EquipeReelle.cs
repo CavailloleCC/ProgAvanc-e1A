@@ -23,7 +23,7 @@ namespace Pokedojo
         }
 
         /// <summary>
-        /// Choix par le joueur du Pokémon actif parmi les Pokémons de l'équipe : Choix au début de la partie
+        /// Choix par le joueur du Pokémon actif parmi les Pokémons de son équipe : Choix au début du combat
         /// </summary>
         /// <param name="equipe"></param>
         /// <returns></returns>
@@ -57,7 +57,7 @@ namespace Pokedojo
         }
 
         /// <summary>
-        /// Choix d'un Pokémon au cours de la partie
+        /// Choix d'un Pokémon en cours de partie
         /// </summary>
         /// <param name="adverse"></param>
         /// <returns></returns>

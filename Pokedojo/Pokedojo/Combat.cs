@@ -165,11 +165,13 @@ namespace Pokedojo
                             Console.WriteLine(Equipe1);
                             Console.WriteLine(Equipe2);
                         }
+                        //L'équipe dont le Pokémon a été mis KO doit choisir un nouveau Pokémon actif
                         equipeAttaquante.ChoisirActif(ref attaquant, adverse);
                         if(Equipe1 is EquipeReelle || Equipe2 is EquipeReelle)
                         {
                             Console.WriteLine("Le Pokémon attaquant est à présent " + attaquant.Nom + "\n" + adverse.Nom + " devient adverse\n");
                         }
+                        //L'équipe qui devient attaquante a la possibilité de faire battre en retraite son Pokémon actif
                         retraiteAdverse = equipeAdverse.BattreEnRetraite(ref adverse, ref attaquant);
                         if(equipeAttaquante is EquipeReelle && retraiteAdverse==true)
                         {
@@ -184,6 +186,7 @@ namespace Pokedojo
                         {
                             Console.WriteLine(attaquant.Nom + " devient attaquant\n" + adverse.Nom + " devient adverse\n");
                         }
+                        //Les équipes ont la possibilité de battre leur Pokémon actif en retraite
                         retraiteAdverse = equipeAdverse.BattreEnRetraite(ref attaquant, ref adverse);
                         retraiteAttaquant=equipeAttaquante.BattreEnRetraite(ref attaquant, ref adverse);
                         if (equipeAdverse is EquipeReelle && retraiteAttaquant == true)

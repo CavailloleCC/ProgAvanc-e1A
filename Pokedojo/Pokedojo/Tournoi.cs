@@ -85,6 +85,7 @@ namespace Pokedojo
 
         /// <summary>
         /// Simule un tournoi en 3 tours entre 16 équipes
+        /// Retourne l'équipe vainqueur
         /// </summary>
         /// <returns></returns>
         public Equipe TournerJeux()

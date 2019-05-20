@@ -16,7 +16,7 @@ namespace Pokedojo
         { }
 
         /// <summary>
-        /// Choix aléatoire du Pokémon actif parmi les Pokémons de l'équipe en début de combat : retourne le nom du Pokémon actif
+        /// Choix aléatoire du Pokémon actif parmi les Pokémons de l'équipe en début de combat : Choix au début du combat
         /// </summary>
         /// <returns></returns>
         public override void ChoisirActif(out Pokemon actif)
