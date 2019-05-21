@@ -219,7 +219,7 @@ namespace Pokedojo
         }
 
         /// <summary>
-        /// Affichage
+        /// Affichage des informations relatives à la classe Combat : affichage des différents tours
         /// </summary>
         /// <returns></returns>
         public override string ToString()

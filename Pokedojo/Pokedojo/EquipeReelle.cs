@@ -143,7 +143,7 @@ namespace Pokedojo
         }
 
         /// <summary>
-        /// Demande à l'équipe si elle veut utiliser l'attaque spécifique de son Pokémon actif lorsque celui en possède une
+        /// Demande à l'équipe si elle veut utiliser l'attaque spécifique de son Pokémon actif lorsque celui-ci en possède une
         /// Retourne true si l'équipe décide d'utiliser l'attaque spécifique, false sinon
         /// </summary>
         /// <param name="attaquant"></param>

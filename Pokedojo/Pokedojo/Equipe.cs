@@ -121,12 +121,12 @@ namespace Pokedojo
             if (VictoiresConsecutives > 0)
             {
                 VictoiresConsecutives += 1;
-                if (VictoiresConsecutives > 1 && VictoiresConsecutives < 4)//Au bout de  3 victoires consécutives on arrive à l'évolution maximale du Pokémon
+                if (VictoiresConsecutives > 1 && VictoiresConsecutives < 4)//Au bout de 3 victoires consécutives on arrive à l'évolution maximale du Pokémon
                 {
                     Evoluer(ref attaquant);
                 }
             }
-            //Si ce c'est la première victoire consécutive du Pokémon actif
+            //Si c'est la première victoire consécutive du Pokémon actif
             else
             {
                 VictoiresConsecutives += 1;
@@ -142,7 +142,7 @@ namespace Pokedojo
         public abstract bool UtiliserAttaqueSpe(Pokemon attaquant,Pokemon adverse);
 
         /// <summary>
-        /// Attaque du Pokémon adverse par la Pokémon attaquant de l'équipe :
+        /// Attaque du Pokémon adverse par le Pokémon attaquant de l'équipe :
         /// -Attaque spécifique si l'équipe à décider d'utiliser l'attaque spécifique de son Pokémon
         ///  Lorsqu'une attaque spécifique est utilisée, elle est mise à null pour le Pokémon auquel elle appartient (une attaque spécifique ne peut être utilisée qu'une fois par tournoi)
         /// -Attaque normale sinon
