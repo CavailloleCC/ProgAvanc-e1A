@@ -90,6 +90,7 @@ namespace Pokedojo
                 chRes = chRes + "Attaque spécifique : " + AttaqueSpe + "\n";
             }
             return chRes;
+
         }
 
     }

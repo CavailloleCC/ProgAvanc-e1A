@@ -31,7 +31,7 @@ namespace Pokedojo
         /// Affichage du tableau des résultats des combats d'un tour 
         /// </summary>
         /// <param name="resultatsTour"></param>
-        public void AfficherResultats(List<List<Equipe>> resultatsTour)
+        private void AfficherResultats(List<List<Equipe>> resultatsTour)
         {
             int num;
             for (int i = 0; i < resultatsTour.Count; i++)

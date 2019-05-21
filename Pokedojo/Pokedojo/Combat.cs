@@ -8,8 +8,8 @@ namespace Pokedojo
 {
     class Combat
     {
-        public Equipe Equipe1 { get; set; }
-        private Equipe Equipe2 { get; set; }
+        public Equipe Equipe1 { get; protected set; }
+        public Equipe Equipe2 { get; protected set; }
         private static Random _alea = new Random();
         protected static int _numeroCombat = 0;
         public int NumeroCombat { get; protected set;}
