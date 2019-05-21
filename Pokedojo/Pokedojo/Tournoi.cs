@@ -13,7 +13,7 @@ namespace Pokedojo
         private BaseDeDonnees BddPokemon { get; set; }
 
         /// <summary>
-        /// Constructeur de la classe Tournoi : Créer une liste de 16 équipes composées des Pokémon issues d'une base de données de 48 Pokémons
+        /// Constructeur de la classe Tournoi : Créer une liste de 16 équipes composées de Pokémons issus d'une base de données de 48 Pokémons
         /// </summary>
         public Tournoi()
         {
@@ -85,7 +85,7 @@ namespace Pokedojo
 
         /// <summary>
         /// Simule un tournoi en 3 tours entre 16 équipes
-        /// Retourne l'équipe vainqueur
+        /// Retourne l'équipe vainqueure
         /// </summary>
         /// <returns></returns>
         public Equipe TournerJeux()

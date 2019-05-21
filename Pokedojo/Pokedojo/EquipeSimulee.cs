@@ -104,7 +104,7 @@ namespace Pokedojo
             //Pokemon actif = ListEquipe[0][0];
             //Choix d'un Pokémon ayant la puissance d'attaque minimale supérieure au nombre de PV de l'adversaire si possible
             choix = MettreKO(ref attaquant, adverse);
-            //Si pas possible : choix d'un Pokémon ayant un nombre le point de vie minimal supérieur à la puissance d'attaque de l'adversaire (pour éviter qu'il nous mette KO au tour suivant, cad lorsqu'il sera adverse)
+            //Si pas possible : choix d'un Pokémon ayant un nombre le point de vie minimal supérieur à la puissance d'attaque de l'adversaire (pour éviter qu'il nous mette KO au tour suivant, c'est-à-dire lorsqu'il sera adverse)
             if (choix == false)
             {
                 choix = EviterKO(adverse, ref attaquant);
@@ -178,7 +178,7 @@ namespace Pokedojo
         }
 
         /// <summary>
-        /// L'équipe simulée utilise l'attaque spécifique de son Pokémon actif si il en possède une dans le cas où sa puissance
+        /// L'équipe simulée utilise l'attaque spécifique de son Pokémon actif s'il en possède une dans le cas où sa puissance
         /// d'attaque n'est pas assez élevée pour mettre KO son adversaire et qu'il sait qu'il est susceptible de se faire tuer par
         /// son adversaire au tour suivant (puissance d'attaque de l'adversaire supérieure au nombre de Pv du Pokémon actif de l'équipe)
         /// Renvoie true si l'attaque est utilisée, false sinon
