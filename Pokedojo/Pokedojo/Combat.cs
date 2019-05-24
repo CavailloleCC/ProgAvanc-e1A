@@ -66,6 +66,7 @@ namespace Pokedojo
         public void AttaquerEquipe(Equipe equipeAttaquante,Equipe equipeAdverse,ref Pokemon attaquant, Pokemon adverse)
         {
             equipeAttaquante.Attaquer(attaquant, adverse);
+            //Si le Pokémmon attaquant met KO son adversaire 
             if(adverse.Pv<=0)
             {
                 equipeAdverse.SupprimerPokemonKO(adverse);

@@ -14,8 +14,8 @@ namespace Pokedojo
 
         /// <summary>
         /// Constructeur de la classe BaseDeDonnees :
-        /// Construction d'une liste de liste de Pokémons, constituée de 48 Pokémons (et de leur 2 évolutions)
-        /// NbPokemonDispo est donc initialisé à 48 (longueur de la liste)
+        /// Construction d'une liste de 48 listes de 3 Pokémons (lignée de Pokémons : un Pokémon et ses deux Pokémons évolués)
+        /// NbPokemonDispo est donc initialisé à 48 (longueur de la liste principale)
         /// </summary>
         public BaseDeDonnees()
         {
